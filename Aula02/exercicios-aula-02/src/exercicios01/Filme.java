@@ -14,7 +14,7 @@ public class Filme {
         this.descricao = descricao;
         this.duracao = duracao;
         this.anoDeLancamento = anoDeLancamento;
-        this.notaDeAvaliacao = notaDeAvaliacao;
+        validarValorDaAvaliacao(nome, notaDeAvaliacao);
         this.diretor = diretor;
     }
 
@@ -23,55 +23,30 @@ public class Filme {
         this.descricao = descricao;
         this.duracao = duracao;
         this.anoDeLancamento = anoDeLancamento;
+        validarValorDaAvaliacao(nome);
         this.diretor = diretor;
     }
 
-    public String getNome() {
-        return nome;
+    private void validarValorDaAvaliacao(String nome, int notaDaAvaliacao) {
+        if (nome.equals("Clube da Luta")) {
+            this.notaDeAvaliacao = 5;
+        } else if (nome.equals("Batman vs Superman")) {
+            this.notaDeAvaliacao = 1;
+        } else if(notaDaAvaliacao >= 1 && notaDaAvaliacao <= 5) {
+            this.notaDeAvaliacao = notaDaAvaliacao;
+        } else {
+            this.notaDeAvaliacao = 3;
+        }
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(int duracao) {
-        this.duracao = duracao;
-    }
-
-    public int getAnoDeLancamento() {
-        return anoDeLancamento;
-    }
-
-    public void setAnoDeLancamento(int anoDeLancamento) {
-        this.anoDeLancamento = anoDeLancamento;
-    }
-
-    public int getNotaDeAvaliacao() {
-        return notaDeAvaliacao;
-    }
-
-    public void setNotaDeAvaliacao(int notaDeAvaliacao) {
-        this.notaDeAvaliacao = notaDeAvaliacao;
-    }
-
-    public Diretor getDiretor() {
-        return diretor;
-    }
-
-    public void setDiretor(Diretor diretor) {
-        this.diretor = diretor;
+    private void validarValorDaAvaliacao(String nome) {
+        if (nome.equals("Clube da Luta")) {
+            this.notaDeAvaliacao = 5;
+        } else if (nome.equals("Batman vs Superman")) {
+            this.notaDeAvaliacao = 1;
+        } else {
+            this.notaDeAvaliacao = 3;
+        }
     }
 
     public void reproduzir() {
