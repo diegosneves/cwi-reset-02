@@ -1,16 +1,15 @@
 package exercicios01;
 
-public class Diretor {
+public class Ator {
 
     private String nome;
-    private int idade;
-    private int qtdeDeFilmesProduzidos;
+    private int idade, qtdeOscarVencidos;
     private Genero genero;
 
-    public Diretor(String nome, int idade, int qtdeDeFilmesProduzidos, Genero genero) {
+    public Ator(String nome, int idade, int qtdeOscarVencidos, Genero genero) {
         this.nome = nome;
         this.idade = idade;
-        this.qtdeDeFilmesProduzidos = qtdeDeFilmesProduzidos;
+        this.qtdeOscarVencidos = qtdeOscarVencidos;
         this.genero = genero;
     }
 
@@ -30,12 +29,12 @@ public class Diretor {
         this.idade = idade;
     }
 
-    public int getQtdeDeFilmesProduzidos() {
-        return qtdeDeFilmesProduzidos;
+    public int getQtdeOscarVencidos() {
+        return qtdeOscarVencidos;
     }
 
-    public void setQtdeDeFilmesProduzidos(int qtdeDeFilmesProduzidos) {
-        this.qtdeDeFilmesProduzidos = qtdeDeFilmesProduzidos;
+    public void setQtdeOscarVencidos(int qtdeOscarVencidos) {
+        this.qtdeOscarVencidos = qtdeOscarVencidos;
     }
 
     public String getGenero() {
@@ -51,13 +50,5 @@ public class Diretor {
                 this.nome,
                 this.idade,
                 getGenero());
-    }
-
-    @Override
-    public String toString() {
-        return String.format("\tNome: %s\n\tIdade: %02d\n\tTotal de Filmes dirigidos: %02d",
-                this.nome,
-                this.idade,
-                this.qtdeDeFilmesProduzidos);
     }
 }
