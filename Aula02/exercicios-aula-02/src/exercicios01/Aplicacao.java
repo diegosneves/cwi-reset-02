@@ -8,12 +8,16 @@ public class Aplicacao {
         Filme gerraAoTerror = new Filme("Gerra ao Terror", "Ação", 140, 2014, diretor);
 
         System.out.println("=====================================");
-        System.out.println(avatar.toString());
+        System.out.println(avatar.toString()); //Teste com o método toString()
+        System.out.println("=====================================");
+        
+        avatar.reproduzir(); //Teste com o método reproduzir()
+
+        System.out.println("\n\n=====================================");
+        System.out.println(gerraAoTerror.toString()); //Teste com o método toString()
         System.out.println("=====================================");
 
-        System.out.println("=====================================");
-        System.out.println(gerraAoTerror.toString());
-        System.out.println("=====================================");
+        gerraAoTerror.reproduzir(); //Teste com o método reproduzir()
 
     }
 }

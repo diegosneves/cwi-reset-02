@@ -74,6 +74,14 @@ public class Filme {
         this.diretor = diretor;
     }
 
+    public void reproduzir() {
+        System.out.printf("Nome do Filme: %s\nDescrição: %s\nDuração: %02d min\nDiretor:\n\tNome: %s\n",
+                this.nome,
+                this.descricao,
+                this.duracao,
+                this.diretor.getNome());
+    }
+
     @Override
     public String toString() {
         return String.format("Nome do Filme: %s\nDescrição: %s\nDuração: %02d min\nAno de Lançamento: %04d\nAvaliação: Nota %02d\nDiretor do Filme:\n%s",
