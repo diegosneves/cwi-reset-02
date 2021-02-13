@@ -38,10 +38,9 @@ public class Diretor {
 
     @Override
     public String toString() {
-        return "Diretor{" +
-                "nome='" + nome + '\'' +
-                ", idade=" + idade +
-                ", qtdeDeFilmesProduzidos=" + qtdeDeFilmesProduzidos +
-                '}';
+        return String.format("\tNome: %s\n\tIdade: %02d\n\tTotal de Filmes dirigidos: %02d",
+                this.nome,
+                this.idade,
+                this.qtdeDeFilmesProduzidos);
     }
 }

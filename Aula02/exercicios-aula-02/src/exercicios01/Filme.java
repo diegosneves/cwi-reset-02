@@ -76,13 +76,12 @@ public class Filme {
 
     @Override
     public String toString() {
-        return "Filme{" +
-                "nome='" + nome + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", duracao=" + duracao +
-                ", anoDeLancamento=" + anoDeLancamento +
-                ", notaDeAvaliacao=" + notaDeAvaliacao +
-                ", diretor=" + diretor.toString() +
-                '}';
+        return String.format("Nome do Filme: %s\nDescrição: %s\nDuração: %02d min\nAno de Lançamento: %04d\nAvaliação: Nota %02d\nDiretor do Filme:\n%s",
+                this.nome,
+                this.descricao,
+                this.duracao,
+                this.anoDeLancamento,
+                this.notaDeAvaliacao,
+                this.diretor.toString());
     }
 }
