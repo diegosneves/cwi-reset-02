@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImoveisParaFinanciamento {
+    private static final double MENOR_VALOR = 50000.0;
+    private static final double MAIOR_VALOR = 1000000.0;
+
     private List<Imovel> imoveis;
 
     public ImoveisParaFinanciamento() {
@@ -20,6 +23,11 @@ public class ImoveisParaFinanciamento {
 
         // se "imovel" corresponder às regras, adicioná-lo à lista "imoveis" com o seguinte código:
         //    imoveis.add(imovel);
+        if(imovel.getValor() >= MENOR_VALOR && imovel.getValor() <= MAIOR_VALOR ){
+            imoveis.add(imovel);
+        } else {
+            System.out.printf("> Atenção, problema de registro! Imóveis com valor R$ %,.2f não são aceitos no programa.", imovel.getValor());
+        }
     }
 
     /**
@@ -34,6 +42,9 @@ public class ImoveisParaFinanciamento {
 
             // se "imovel" corresponder às regras, adicioná-lo à lista de opcoes com o seguinte código:
             //    opcoes.add(imovel);
+            if(imovel.getValor() <= valorLimite){
+                opcoes.add(imovel);
+            }
         }
 
         return opcoes;
