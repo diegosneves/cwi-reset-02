@@ -29,7 +29,6 @@ public class MinhaCasaMinhaDesgraca {
         opcoesParaFinanciamento.registrarImovel(new Imovel(endereco4, 80000));
         opcoesParaFinanciamento.registrarImovel(new Imovel(endereco5, 200000));
 
-
         /**
          * FIM
          *

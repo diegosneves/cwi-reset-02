@@ -42,15 +42,8 @@ public enum UnidadeFederativa {
         this.capital = capital;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public String getSigla() {
         return sigla;
     }
 
-    public String getCapital() {
-        return capital;
-    }
 }
