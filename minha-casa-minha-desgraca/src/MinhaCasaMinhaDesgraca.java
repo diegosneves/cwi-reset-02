@@ -17,6 +17,18 @@ public class MinhaCasaMinhaDesgraca {
          *
          * NÃO MODIFICAR ESTA CLASSE ANTES DESTA LINHA.
          */
+        Endereco endereco1 = new Endereco("Rua A", "Casa", "Vila Feliz", "Cidade A", 377, UnidadeFederativa.RIO_GRANDE_DO_SUL);
+        Endereco endereco2 = new Endereco("Rua B", "Apartamento 10", "Vila Rica", "Cidade B", 77, UnidadeFederativa.SAO_PAULO);
+        Endereco endereco3 = new Endereco("Rua C", "Casa", "Vila Sorridente", "Cidade C", 37, UnidadeFederativa.RIO_DE_JANEIRO);
+        Endereco endereco4 = new Endereco("Rua D", "Casa", "Vila Baixa", "Cidade D", 90, UnidadeFederativa.RIO_GRANDE_DO_SUL);
+        Endereco endereco5 = new Endereco("Rua E", "Casa", "Vila Alta", "Cidade E", 17, UnidadeFederativa.RIO_GRANDE_DO_SUL);
+
+        opcoesParaFinanciamento.registrarImovel(new Imovel(endereco1, 100000));
+        opcoesParaFinanciamento.registrarImovel(new Imovel(endereco2, 1000000));
+        opcoesParaFinanciamento.registrarImovel(new Imovel(endereco3, 500000));
+        opcoesParaFinanciamento.registrarImovel(new Imovel(endereco4, 80000));
+        opcoesParaFinanciamento.registrarImovel(new Imovel(endereco5, 200000));
+
 
         /**
          * FIM

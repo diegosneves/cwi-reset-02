@@ -30,6 +30,6 @@ public class Imovel {
     }
 
     public String apresentacao() {
-        return String.format("Imóvel localizado no endereço: %s. Valor R$%.2f", this.endereco.toString(), this.valor);
+        return String.format("imóvel localizado no\n\t\tEndereço: %s \n\t\tNo valor R$%,.2f", this.endereco.toString(), this.valor);
     }
 }

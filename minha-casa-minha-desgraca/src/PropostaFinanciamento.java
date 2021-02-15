@@ -29,27 +29,23 @@ public class PropostaFinanciamento {
         }
     }
 
+    /**
+     * Método para auxiliar o método validarProposta(), validando as regras de negocio.
+     * @param porcentagem - Valor informando a porcentagem desejada
+     */
     private void validarParametrosDaRegra(double porcentagem) {
-        if (validarRegraSalarioMultiplicadoPorPrazo() >= validarRegraPorcentagemValorImovel(porcentagem)) {
+        if ((beneficiario.getSalario() * prazoDePagamento) >= (imovel.getValor() * (porcentagem /100.0))) {
             imprimirPropostaAprovada();
         } else {
             imprimirPropostaNegada();
         }
     }
 
-    private double validarRegraPorcentagemValorImovel(double porcentagem) {
-        return imovel.getValor() * (porcentagem /100);
-    }
-
-    private double validarRegraSalarioMultiplicadoPorPrazo() {
-        return beneficiario.getSalario() * prazoDePagamento;
-    }
-
     private void imprimirPropostaAprovada(){
-        System.out.printf("Parabéns %s!!! seu financiamento em %02dx para o imóvel %d foi APROVADO.\n", beneficiario.getNome(), prazoDePagamento, imovel.apresentacao());
+        System.out.printf("Parabéns %s!!! seu financiamento em %02dx para o %s foi APROVADO.\n", beneficiario.getNome(), prazoDePagamento, imovel.apresentacao());
     }
 
     private void imprimirPropostaNegada(){
-        System.out.printf(" %s! Infelizmente seu financiamento em %02dx para o imóvel %d foi NEGADO.\n", beneficiario.getNome(), prazoDePagamento, imovel.apresentacao());
+        System.out.printf(" %s! Infelizmente seu financiamento em %02dx para o %s foi NEGADO.\n", beneficiario.getNome(), prazoDePagamento, imovel.apresentacao());
     }
 }

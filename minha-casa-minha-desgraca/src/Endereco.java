@@ -64,7 +64,7 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return String.format("%s, complemento: %s, bairro: %s, cidade: %s - numero: %02d, estado: %s",
+        return String.format("%s, Complemento: %s, Bairro: %s, Cidade: %s - Numero: %02d, UF: %s",
                 this.logradouro,
                 this.complemento,
                 this.bairro,
