@@ -23,11 +23,11 @@ public class MinhaCasaMinhaDesgraca {
         Endereco endereco4 = new Endereco("Rua D", "Casa", "Vila Baixa", "Cidade D", 90, UnidadeFederativa.RIO_GRANDE_DO_SUL);
         Endereco endereco5 = new Endereco("Rua E", "Casa", "Vila Alta", "Cidade E", 17, UnidadeFederativa.RIO_GRANDE_DO_SUL);
 
-        opcoesParaFinanciamento.registrarImovel(new Imovel(endereco1, 100000));
-        opcoesParaFinanciamento.registrarImovel(new Imovel(endereco2, 1000000));
-        opcoesParaFinanciamento.registrarImovel(new Imovel(endereco3, 500000));
-        opcoesParaFinanciamento.registrarImovel(new Imovel(endereco4, 80000));
-        opcoesParaFinanciamento.registrarImovel(new Imovel(endereco5, 200000));
+        opcoesParaFinanciamento.registrarImovel(new Casa(endereco1, 100000, true));
+        opcoesParaFinanciamento.registrarImovel(new Apartamento(endereco2, 1000000, 10));
+        opcoesParaFinanciamento.registrarImovel(new Casa(endereco3, 500000, true));
+        opcoesParaFinanciamento.registrarImovel(new Casa(endereco4, 80000, false));
+        opcoesParaFinanciamento.registrarImovel(new Apartamento(endereco5, 200000, 4));
 
         /**
          * FIM

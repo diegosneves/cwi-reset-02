@@ -9,7 +9,7 @@ public class Apartamento extends Imovel {
 
     @Override
     public String apresentacao() {
-        return String.format("Apartamento no [%dº andar] localizado no\n\t\tEndereço: %s \n\t\tNo valor R$%,.2f",
+        return String.format("Apartamento no >>%dº andar<< localizado no\n\t\tEndereço: %s \n\t\tNo valor R$%,.2f",
                 this.andar, this.getEndereco().toString(), this.getValor());
     }
 }

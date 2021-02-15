@@ -16,7 +16,7 @@ public class Casa extends Imovel {
 
     @Override
     public String apresentacao() {
-        return String.format("Casa [%s] pátio localizado no\n\t\tEndereço: %s \n\t\tNo valor R$%,.2f",
+        return String.format("Casa >>%s<< pátio localizado no\n\t\tEndereço: %s \n\t\tNo valor R$%,.2f",
                 this.verificarSeTemPatio(), this.getEndereco().toString(), this.getValor());
     }
 }
