@@ -3,7 +3,7 @@
  * Como comportamento, é necessário que o imóvel tenha um método apresentacao que retorne uma String com todas as informações do imóvel
  * (ex.: "Imóvel localizado no endereço X. Valor: R$ Y").
  */
-public class Imovel {
+public abstract class Imovel {
 
     private Endereco endereco;
     private double valor;
@@ -21,7 +21,5 @@ public class Imovel {
         return valor;
     }
 
-    public String apresentacao() {
-        return String.format("imóvel localizado no\n\t\tEndereço: %s \n\t\tNo valor R$%,.2f", this.endereco.toString(), this.valor);
-    }
+    public abstract String apresentacao();
 }
