@@ -11,7 +11,7 @@ public class Aplicacao {
         Ator ator2 = new Ator("Ciclano", 36, 1, Genero.MASCULINO);
         Ator ator3 = new Ator("Beltrano", 48, 7, Genero.MASCULINO);
 
-        List<Ator> elenco = new ArrayList<>();
+        List<Pessoa> elenco = new ArrayList<>();
         elenco.add(ator1);
         elenco.add(ator2);
         elenco.add(ator3);

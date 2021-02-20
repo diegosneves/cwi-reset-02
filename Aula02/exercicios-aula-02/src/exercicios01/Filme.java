@@ -10,9 +10,9 @@ public class Filme {
     private int anoDeLancamento;
     private int notaDeAvaliacao;
     private Diretor diretor;
-    private List <Ator> elenco;
+    private List <Pessoa> elenco;
 
-    public Filme(String nome, String descricao, int duracao, int anoDeLancamento, int notaDeAvaliacao, Diretor diretor, List<Ator> elenco) {
+    public Filme(String nome, String descricao, int duracao, int anoDeLancamento, int notaDeAvaliacao, Diretor diretor, List<Pessoa> elenco) {
         this.nome = nome;
         this.descricao = descricao;
         this.duracao = duracao;
@@ -22,7 +22,7 @@ public class Filme {
         this.elenco = elenco;
     }
 
-    public Filme(String nome, String descricao, int duracao, int anoDeLancamento, Diretor diretor, List<Ator> elenco) {
+    public Filme(String nome, String descricao, int duracao, int anoDeLancamento, Diretor diretor, List<Pessoa> elenco) {
         this.nome = nome;
         this.descricao = descricao;
         this.duracao = duracao;
@@ -83,7 +83,7 @@ public class Filme {
     }
 
     public void exibirCreditos() {
-        for(Ator ator : elenco){
+        for(Pessoa ator : elenco){
             System.out.println(ator.toString());
         }
         System.out.println(diretor.toString());
