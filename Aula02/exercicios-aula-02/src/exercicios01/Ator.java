@@ -9,4 +9,12 @@ public class Ator extends Pessoa {
         this.qtdeOscarVencidos = qtdeOscarVencidos;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Nome: %s\nIdade: %02d\nGenero: %s\nTotal de Oscar: %02d\n",
+                super.getNome(),
+                super.getIdade(),
+                getGenero(),
+                qtdeOscarVencidos);
+    }
 }

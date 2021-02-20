@@ -1,5 +1,7 @@
 package exercicios01;
 
+import java.util.List;
+
 public class Filme {
 
     private String nome;
@@ -8,14 +10,26 @@ public class Filme {
     private int anoDeLancamento;
     private int notaDeAvaliacao;
     private Diretor diretor;
+    private List <Ator> elenco;
 
-    public Filme(String nome, String descricao, int duracao, int anoDeLancamento, int notaDeAvaliacao, Diretor diretor) {
+    public Filme(String nome, String descricao, int duracao, int anoDeLancamento, int notaDeAvaliacao, Diretor diretor, List<Ator> elenco) {
         this.nome = nome;
         this.descricao = descricao;
         this.duracao = duracao;
         this.anoDeLancamento = anoDeLancamento;
         validarValorDaAvaliacao(nome, notaDeAvaliacao);
         this.diretor = diretor;
+        this.elenco = elenco;
+    }
+
+    public Filme(String nome, String descricao, int duracao, int anoDeLancamento, Diretor diretor, List<Ator> elenco) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.duracao = duracao;
+        this.anoDeLancamento = anoDeLancamento;
+        validarValorDaAvaliacao(nome);
+        this.diretor = diretor;
+        this.elenco = elenco;
     }
 
     public Filme(String nome, String descricao, int duracao, int anoDeLancamento, Diretor diretor) {
@@ -25,6 +39,17 @@ public class Filme {
         this.anoDeLancamento = anoDeLancamento;
         validarValorDaAvaliacao(nome);
         this.diretor = diretor;
+        this.elenco = null;
+    }
+
+    public Filme(String nome, String descricao, int duracao, int anoDeLancamento, int notaDeAvaliacao, Diretor diretor) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.duracao = duracao;
+        this.anoDeLancamento = anoDeLancamento;
+        validarValorDaAvaliacao(nome, notaDeAvaliacao);
+        this.diretor = diretor;
+        this.elenco = null;
     }
 
     private void validarValorDaAvaliacao(String nome, int notaDaAvaliacao) {
@@ -55,6 +80,13 @@ public class Filme {
                 this.descricao,
                 this.duracao,
                 this.diretor.getNome());
+    }
+
+    public void exibirCreditos() {
+        for(Ator ator : elenco){
+            System.out.println(ator.toString());
+        }
+        System.out.println(diretor.toString());
     }
 
     @Override
