@@ -1,12 +1,14 @@
 package exercicios01;
 
+import java.time.LocalDate;
+
 public class Pessoa {
 
     private String nome;
-    private int idade;
+    private LocalDate idade;
     private Genero genero;
 
-    public Pessoa(String nome, int idade, Genero genero) {
+    public Pessoa(String nome, LocalDate idade, Genero genero) {
         this.nome = nome;
         this.idade = idade;
         this.genero = genero;
@@ -20,11 +22,11 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public int getIdade() {
+    public LocalDate getIdade() {
         return idade;
     }
 
-    public void setIdade(int idade) {
+    public void setIdade(LocalDate idade) {
         this.idade = idade;
     }
 
@@ -36,10 +38,14 @@ public class Pessoa {
         this.genero = genero;
     }
 
+    public Integer calculaIdade() {
+        return LocalDate.now().compareTo(idade);
+    }
+
     public void exibirDados() {
         System.out.printf("Nome: %s\nIdade: %02d\nGenero: %s\n",
                 this.nome,
-                this.idade,
+                calculaIdade(),
                 getGenero());
     }
 }
