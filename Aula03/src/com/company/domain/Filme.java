@@ -1,4 +1,7 @@
-package com.company;
+package com.company.domain;
+
+import com.company.exceptions.DefineAvaliacaoException;
+import com.company.heranca.Diretor;
 
 public class Filme {
 
@@ -28,7 +31,8 @@ public class Filme {
 
     private void defineAvaliacao(Integer avaliacao) {
         if (avaliacao < 1 || avaliacao > 5) {
-            this.avaliacao = 3;
+//            this.avaliacao = 3;
+            throw new DefineAvaliacaoException();
         } else {
             this.avaliacao = avaliacao;
         }

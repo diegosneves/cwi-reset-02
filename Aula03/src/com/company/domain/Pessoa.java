@@ -1,4 +1,6 @@
-package com.company;
+package com.company.domain;
+
+import com.company.enumeradore.Genero;
 
 public class Pessoa {
 

@@ -1,4 +1,4 @@
-package com.company;
+package com.company.enumeradore;
 
 public enum Genero {
     MASCULINO("Masculino"),
