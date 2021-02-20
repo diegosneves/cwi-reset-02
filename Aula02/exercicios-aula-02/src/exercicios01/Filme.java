@@ -51,29 +51,50 @@ public class Filme {
         }
     }
 
+    public Pessoa validarDiretorDoElenco() {
+        for (Pessoa integranteDoElenco : elenco) {
+            if(integranteDoElenco instanceof Diretor){
+                return integranteDoElenco;
+            }
+        }
+        return null;
+    }
+
+    public String dadosDoDiretor() {
+        return (validarDiretorDoElenco() != null ? validarDiretorDoElenco().toString() : "Filme Sem Diretor!");
+    }
+
     public void reproduzir() {
-        //TODO Modificar para informar dados do Diretor
-        System.out.printf("Nome do Filme: %s\nDescrição: %s\nDuração: %02d min\n",
+        System.out.println("=================FILME==================");
+        System.out.printf("Nome do Filme: %s\nDescrição: %s\nDuração: %02d min\n\tDiretor do Filme: \n%s\n",
                 this.nome,
                 this.descricao,
-                this.duracao);
+                this.duracao,
+                dadosDoDiretor());
     }
 
     public void exibirCreditos() {
-        //TODO Modificar para melhorar as informacoes(formatação) da tela.
+        String diretor = "";
+        System.out.println("=================ATORES==================");
         for(Pessoa ator : elenco){
-            System.out.println(ator.toString());
+            if (ator instanceof Diretor){
+                diretor += ator.toString();
+            } else {
+                System.out.println(ator.toString());
+            }
         }
+        System.out.println("=================DIRETOR==================");
+        System.out.println(diretor);
     }
 
     @Override
     public String toString() {
-        //TODO Modificar para informar dados do Diretor
         return String.format("Nome do Filme: %s\nDescrição: %s\nDuração: %02d min\nAno de Lançamento: %04d\nAvaliação: Nota %02d\nDiretor do Filme:\n%s",
                 this.nome,
                 this.descricao,
                 this.duracao,
                 this.anoDeLancamento,
-                this.notaDeAvaliacao);
+                this.notaDeAvaliacao,
+                dadosDoDiretor());
     }
 }
