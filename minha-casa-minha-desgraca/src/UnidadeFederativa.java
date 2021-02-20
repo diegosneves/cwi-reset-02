@@ -14,7 +14,7 @@ public enum UnidadeFederativa {
     RIO_GRANDE_DO_SUL("Rio Grande do Sul", "RS", "Porto Alegre"),
     TOCANTINS("Tocantins", "TO", "Palmas"),
     PIAUI("Piauí", "PI", "Teresina"),
-    SAO_PAULO("São Paulo", "SP", "São Paulo"),
+    SAO_PAULO("São Paulo", "SP", "São Paulo", 0.65),
     RONDONIA("Rondônia", "RO", "Porto Velho"),
     RORAIMA("Roraima", "RR", "Boa Vista"),
     PARANA("Paraná", "PR", "Curitiba"),
@@ -24,11 +24,12 @@ public enum UnidadeFederativa {
     PARAIBA("Paraíba", "PB", "João Pessoa"),
     RIO_GRANDE_DO_NORTE("Rio Grande do Norte", "RN", "Natal"),
     ESPIRITO_SANTO("Espírito Santo", "ES", "Vitória"),
-    RIO_DE_JANEIRO("Rio de Janeiro", "RJ", "Rio de Janeiro"),
+    RIO_DE_JANEIRO("Rio de Janeiro", "RJ", "Rio de Janeiro", 0.6),
     SERGIPE("Sergipe", "SE", "Aracaju"),
     DISTRITO_FEDERAL("Distrito Federal", "DF", "Brasília");
 
     private String nome, sigla, capital;
+    private Double percentualPagamento;
 
     /**
      * Método Construtor
@@ -40,10 +41,21 @@ public enum UnidadeFederativa {
         this.nome = nome;
         this.sigla = sigla;
         this.capital = capital;
+        percentualPagamento = 0.5;
+    }
+
+    UnidadeFederativa(String nome, String sigla, String capital, Double percentualPagamento) {
+        this.nome = nome;
+        this.sigla = sigla;
+        this.capital = capital;
+        this.percentualPagamento = percentualPagamento;
     }
 
     public String getSigla() {
         return sigla;
     }
 
+    public Double getPercentualPagamento() {
+        return percentualPagamento;
+    }
 }

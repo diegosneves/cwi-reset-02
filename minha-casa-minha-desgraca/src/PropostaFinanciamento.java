@@ -20,25 +20,21 @@ public class PropostaFinanciamento {
     }
 
     public void validarProposta() {
-        if(imovel.getEndereco().getEstado().equals("SP")){
-            validarParametrosDaRegra(65);
-        } else if (imovel.getEndereco().getEstado().equals("RJ")){
-            validarParametrosDaRegra(60);
+        if(propostaAprovada()){
+            imprimirPropostaAprovada();
         } else {
-            validarParametrosDaRegra(50);
+            imprimirPropostaNegada();
         }
     }
 
     /**
      * Método para auxiliar o método validarProposta(), validando as regras de negocio.
-     * @param porcentagem - Valor informando a porcentagem desejada
      */
-    private void validarParametrosDaRegra(double porcentagem) {
-        if ((beneficiario.getSalario() * prazoDePagamento) >= (imovel.getValor() * (porcentagem /100.0))) {
-            imprimirPropostaAprovada();
-        } else {
-            imprimirPropostaNegada();
-        }
+    private boolean propostaAprovada() {
+        Double capacidadeDePagamento = beneficiario.getSalario() * prazoDePagamento;
+        Double minimoParaPagamento = imovel.getValor() * imovel.getEndereco().getEstado().getPercentualPagamento();
+
+        return capacidadeDePagamento >= minimoParaPagamento;
     }
 
     private void imprimirPropostaAprovada(){

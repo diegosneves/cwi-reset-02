@@ -18,8 +18,8 @@ public class Endereco {
         this.estado = estado;
     }
 
-    public String getEstado() {
-        return estado.getSigla();
+    public UnidadeFederativa getEstado() {
+        return estado;
     }
 
     @Override
@@ -30,6 +30,6 @@ public class Endereco {
                 this.bairro,
                 this.cidade,
                 this.numero,
-                getEstado());
+                getEstado().getSigla());
     }
 }
