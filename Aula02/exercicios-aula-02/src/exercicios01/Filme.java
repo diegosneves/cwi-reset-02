@@ -32,14 +32,29 @@ public class Filme {
         this.elenco = elenco;
     }
 
-    public HashMap<Integer, List<Pessoa>> agruparElencoPorIdade() {
-        //TODO Desafio: Criar um metodo que retorne um HashMap contendo o elenco do filme agrupado por idade.
-        //FIXME Verificar a maneira correta de implementar o desafio do HashMap.
+    /**
+     * Desafio: Criar um metodo que retorne um HashMap contendo o elenco do filme agrupado por idade.
+     * Onde a idade é usada como Chave/Key no HashMap.
+     * @return Retorna um HashMap com o elenco do filme agrupado por idade
+     */
+    public Map<Integer, List<Pessoa>> agruparElencoPorIdade() {
+        //TODO Verificar a maneira correta de implementar o desafio do HashMap.
+        //FIXME Refatorar o código para melhorar o entendimento(Criar métodos axiliares private caso necessário).
+        List<Pessoa> pessoas = null; // Lista auxiliar
         Map <Integer, List<Pessoa>> map = new HashMap<>();
         for(int i = 0; i < elenco.size(); i++){
-            map.put(elenco.get(i).calculaIdade(), elenco);
+            if(map.containsKey(elenco.get(i).calculaIdade())){ // Verifica se há uma chave igual no hashmap
+                pessoas = map.get(elenco.get(i).calculaIdade()); // Recupera a List<Pessoa> vinculada à chave/key.
+                pessoas.add(elenco.get(i)); // Adiciona a pessoa que está na posição "i" da List<Pessoa> elenco (atributo da classe) à List<Pessoa> vinculada a chave.
+                map.put(elenco.get(i).calculaIdade(),pessoas); // Insere os dados dentro do HashMap, incluindo o ArrayList com um novo Objeto.
+            } else {
+                // Insere novos dados dentro do HashMap
+                pessoas = new ArrayList<>();
+                pessoas.add(elenco.get(i));
+                map.put(elenco.get(i).calculaIdade(), pessoas);
+            }
         }
-        return (HashMap<Integer, List<Pessoa>>) map;
+        return map;
     }
 
     private void validarValorDaAvaliacao(String nome, int notaDaAvaliacao) {
