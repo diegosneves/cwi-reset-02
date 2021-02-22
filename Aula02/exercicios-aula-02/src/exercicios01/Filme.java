@@ -1,6 +1,9 @@
 package exercicios01;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Filme {
 
@@ -27,6 +30,16 @@ public class Filme {
         this.anoDeLancamento = anoDeLancamento;
         validarValorDaAvaliacao(nome);
         this.elenco = elenco;
+    }
+
+    public HashMap<Integer, List<Pessoa>> agruparElencoPorIdade() {
+        //TODO Desafio: Criar um metodo que retorne um HashMap contendo o elenco do filme agrupado por idade.
+        //FIXME Verificar a maneira correta de implementar o desafio do HashMap.
+        Map <Integer, List<Pessoa>> map = new HashMap<>();
+        for(int i = 0; i < elenco.size(); i++){
+            map.put(elenco.get(i).calculaIdade(), elenco);
+        }
+        return (HashMap<Integer, List<Pessoa>>) map;
     }
 
     private void validarValorDaAvaliacao(String nome, int notaDaAvaliacao) {
