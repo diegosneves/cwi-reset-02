@@ -33,6 +33,12 @@ public class BancoDaDesgraca {
         cc1.depositar(21.0);
         cc1.transferir(20.0, cc3);
 
+        cc1.exibirExtrato(null , null);
+        cc3.exibirExtrato(null , null);
+
+        System.out.println("CC1 " + cc1.consultarSaldo());
+        System.out.println("CC3 " + cc3.consultarSaldo());
+
 
     }
 

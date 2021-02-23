@@ -14,12 +14,24 @@ public class ContaCorrente extends Conta {
         super(numeroDaConta, banco);
     }
 
+    private void transferenciaEntreContas(Double valor, ContaBancaria contaDestino){
+        //TODO Validar contas diferentes
+        if(getInstituicaoBancaria() != contaDestino.getInstituicaoBancaria()){
+            if(valor > (getSaldo() * (1 + TIPO_DE_CONTA.getTaxaTranferenciaOutrasInstituicoes()))){
+                throw new SaldoInsuficienteException("Você não Possui Saldo Suficiente para Sacar!!");
+            }
+            setSaldo(getSaldo() - (getSaldo() * TIPO_DE_CONTA.getTaxaTranferenciaOutrasInstituicoes()));
+        } else {
+            if(valor > getSaldo()){
+                throw new SaldoInsuficienteException("Você não Possui Saldo Suficiente para Sacar!!");
+            }
+        }
+
+    }
+
     @Override
     public void transferir(Double valor, ContaBancaria contaDestino) {
-        if(valor > (getSaldo() * (1 + TIPO_DE_CONTA.getTaxaTranferenciaOutrasInstituicoes()))){
-            throw new SaldoInsuficienteException("Você não Possui Saldo Suficiente para Sacar!!");
-        }
-        setSaldo(getSaldo() - (getSaldo() * TIPO_DE_CONTA.getTaxaTranferenciaOutrasInstituicoes()));
+        transferenciaEntreContas(valor,contaDestino);
         super.transferir(valor, contaDestino);
     }
 
