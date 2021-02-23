@@ -78,7 +78,7 @@ public abstract class Conta implements ContaBancaria {
                     DecimalFormat.getCurrencyInstance().format(valor),
                     this.toString(),
                     contaDestino.toString());
-            contaDestino.depositar(valor);
+//            contaDestino.depositar(valor);
         }
     }
 
@@ -116,6 +116,7 @@ public abstract class Conta implements ContaBancaria {
 //        if(valor > this.saldo){
 //            throw new SaldoInsuficienteException("Você não Possui Saldo Suficiente para Transferir!!");
 //        }
+//        mensagemOperacao(TransacaoTipos.TRANFERENCIA, valor);
         mensagemOperacao(TransacaoTipos.TRANFERENCIA, valor, contaDestino);
         registraTransacao(new Transacao(valor, Data.getDataTransacao(), TransacaoTipos.TRANFERENCIA));
         setSaldo(this.saldo - valor);

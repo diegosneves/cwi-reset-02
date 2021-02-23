@@ -15,11 +15,26 @@ public class TipoTransacao {
     private static final TransacaoTipos DEPOSITO = TransacaoTipos.DEPOSITO;
     private static final TransacaoTipos TRANFERENCIA = TransacaoTipos.TRANFERENCIA;
 
-    public static void transferenciaEntreContas(TaxasTransacoes tipoDeConta, Double valor, ContaBancaria contaOrigem, ContaBancaria contaDestino) {
-//        if(valor > (contaOrigem.getSaldo() * (1 + tipoDeConta.getTaxaTranferenciaOutrasInstituicoes()))){
-//            throw new SaldoInsuficienteException("Você não Possui Saldo Suficiente para Sacar!!");
-//        }
-//        contaOrigem.setSaldo(contaOrigem.getSaldo() - (contaOrigem.getSaldo() * tipoDeConta.getTaxaTranferenciaOutrasInstituicoes()));
+    public static Double transferenciaEntreContas(TaxasTransacoes tipoDeConta, Double valor, ContaBancaria contaOrigem, ContaBancaria contaDestino) {
+        Double valorAtualizado = 0.0;
+        if(contaOrigem.getInstituicaoBancaria() != contaDestino.getInstituicaoBancaria()){
+            if((valor * (1 + tipoDeConta.getTaxaTranferenciaOutrasInstituicoes())) > contaOrigem.consultarSaldo()){
+                throw new SaldoInsuficienteException("Você não Possui Saldo Suficiente para Sacar!!");
+            }
+//            ((Conta) contaOrigem).setSaldo(contaOrigem.consultarSaldo() - (valor * (1 + tipoDeConta.getTaxaTranferenciaOutrasInstituicoes())));
+            valorAtualizado = valor * (1 + tipoDeConta.getTaxaTranferenciaOutrasInstituicoes());
+//            contaOrigem.transferir(valor * (1 + tipoDeConta.getTaxaTranferenciaOutrasInstituicoes()), contaDestino);
+            contaDestino.depositar(valor);
+            return valorAtualizado;
+        } else {
+            if(valor > contaOrigem.consultarSaldo()){
+                throw new SaldoInsuficienteException("Você não Possui Saldo Suficiente para Sacar!!");
+            }
+            ((Conta) contaOrigem).setSaldo(contaOrigem.consultarSaldo() - valor);
+//            contaOrigem.transferir(valor, contaDestino);
+            contaDestino.depositar(valor);
+            return valor;
+        }
     }
 
 
