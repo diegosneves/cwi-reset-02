@@ -19,22 +19,22 @@ public class Transacao {
         this.tipoTransacao = tipoTransacao;
     }
 
-    private String formatValorTransacao() {
-        //FIXME Verificar a necessidade deste método.
-        return DecimalFormat.getCurrencyInstance().format(this.valorTransacao);
-    }
+//    private String formatValorTransacao() {
+//        //FIXME Verificar a necessidade deste método.
+//        return DecimalFormat.getCurrencyInstance().format(this.valorTransacao);
+//    }
 
-    private String formatDataTransacao() {
-        //FIXME Verificar a necessidade deste método.
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return LocalDate.parse(dataTransacao.toString(), FORMATTER).toString();
-    }
+//    private String formatDataTransacao() {
+//        //FIXME Verificar a necessidade deste método.
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        return LocalDate.parse(dataTransacao.toString(), FORMATTER).toString();
+//    }
 
     @Override
     public String toString() {
         return String.format("\t%s\t%s\t%s",
                 this.tipoTransacao.getCharReferencia(),
-                formatValorTransacao(),
+                DecimalFormat.getCurrencyInstance().format(this.valorTransacao),
                 dataTransacao.format(FORMATTER));
     }
 
