@@ -44,10 +44,6 @@ public abstract class Conta implements ContaBancaria {
         this.saldo = saldo;
     }
 
-    public Double getSaldo() {
-        return saldo;
-    }
-
     private List<Transacao> getTransacoes() {
         return transacoes;
     }
@@ -56,31 +52,31 @@ public abstract class Conta implements ContaBancaria {
         this.transacoes.add(novaTransacao);
     }
 
-    private void mensagemOperacao(TransacaoTipos transacaoTipos, Double valor) {
-        if(transacaoTipos == TransacaoTipos.DEPOSITO){
-            System.out.printf("Depositando valor %s na %s\n",
-                    DecimalFormat.getCurrencyInstance().format(valor),
-                    this.toString());
-        } else if (transacaoTipos == TransacaoTipos.SAQUE) {
-            System.out.printf("Sacando valor %s da %s\n",
-                    DecimalFormat.getCurrencyInstance().format(valor),
-                    this.toString());
-        } else if (transacaoTipos == TransacaoTipos.TRANFERENCIA) {
-            System.out.printf("Tranferindo valor %s da %s para %s\n",
-                    DecimalFormat.getCurrencyInstance().format(valor),
-                    this.toString());
-        }
-    }
-
-    private void mensagemOperacao(TransacaoTipos transacaoTipos, Double valor, ContaBancaria contaDestino) {
-        if (transacaoTipos == TransacaoTipos.TRANFERENCIA) {
-            System.out.printf("Tranferindo valor %s da %s para %s\n",
-                    DecimalFormat.getCurrencyInstance().format(valor),
-                    this.toString(),
-                    contaDestino.toString());
-//            contaDestino.depositar(valor);
-        }
-    }
+//    private void mensagemOperacao(TransacaoTipos transacaoTipos, Double valor) {
+//        if(transacaoTipos == TransacaoTipos.DEPOSITO){
+//            System.out.printf("Depositando valor %s na %s\n",
+//                    DecimalFormat.getCurrencyInstance().format(valor),
+//                    this.toString());
+//        } else if (transacaoTipos == TransacaoTipos.SAQUE) {
+//            System.out.printf("Sacando valor %s da %s\n",
+//                    DecimalFormat.getCurrencyInstance().format(valor),
+//                    this.toString());
+//        } else if (transacaoTipos == TransacaoTipos.TRANFERENCIA) {
+//            System.out.printf("Tranferindo valor %s da %s para %s\n",
+//                    DecimalFormat.getCurrencyInstance().format(valor),
+//                    this.toString());
+//        }
+//    }
+//
+//    private void mensagemOperacao(TransacaoTipos transacaoTipos, Double valor, ContaBancaria contaDestino) {
+//        if (transacaoTipos == TransacaoTipos.TRANFERENCIA) {
+//            System.out.printf("Tranferindo valor %s da %s para %s\n",
+//                    DecimalFormat.getCurrencyInstance().format(valor),
+//                    this.toString(),
+//                    contaDestino.toString());
+////            contaDestino.depositar(valor);
+//        }
+//    }
 
     @Override
     public InstituicaoBancaria getInstituicaoBancaria() {
@@ -94,17 +90,17 @@ public abstract class Conta implements ContaBancaria {
 
     @Override
     public void depositar(Double valor) {
-        mensagemOperacao(TransacaoTipos.DEPOSITO, valor);
+//        mensagemOperacao(TransacaoTipos.DEPOSITO, valor);
         registraTransacao(new Transacao(valor, Data.getDataTransacao(), TransacaoTipos.DEPOSITO));
         setSaldo(this.saldo + valor);
     }
 
     @Override
     public void sacar(Double valor) {
-        if(valor > this.saldo){
-            throw new SaldoInsuficienteException("Você não Possui Saldo Suficiente para Sacar!!");
-        }
-        mensagemOperacao(TransacaoTipos.SAQUE, valor);
+//        if(valor > this.saldo){
+//            throw new SaldoInsuficienteException("Você não Possui Saldo Suficiente para Sacar!!");
+//        }
+//        mensagemOperacao(TransacaoTipos.SAQUE, valor);
         registraTransacao(new Transacao(valor, Data.getDataTransacao(), TransacaoTipos.SAQUE));
         setSaldo(this.saldo - valor);
     }
@@ -117,7 +113,7 @@ public abstract class Conta implements ContaBancaria {
 //            throw new SaldoInsuficienteException("Você não Possui Saldo Suficiente para Transferir!!");
 //        }
 //        mensagemOperacao(TransacaoTipos.TRANFERENCIA, valor);
-        mensagemOperacao(TransacaoTipos.TRANFERENCIA, valor, contaDestino);
+//        mensagemOperacao(TransacaoTipos.TRANFERENCIA, valor, contaDestino);
         registraTransacao(new Transacao(valor, Data.getDataTransacao(), TransacaoTipos.TRANFERENCIA));
         setSaldo(this.saldo - valor);
     }
