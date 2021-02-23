@@ -1,5 +1,5 @@
 package br.com.banco.desgraca.domain;
 
-public class TipoTransacaoDois {
+public class TipoTransacao {
     //TODO Validar a possibilidade de transformar essa classe em um enumerador.
 }

@@ -1,6 +1,6 @@
 package br.com.banco.desgraca.domain;
 
-import br.com.banco.desgraca.domain.conta.TipoTransacao;
+import br.com.banco.desgraca.domain.conta.TransacaoTipos;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -11,12 +11,12 @@ public class Transacao {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private Double valorTransacao;
     private LocalDate dataTransacao;
-    private br.com.banco.desgraca.domain.conta.TipoTransacao tipoTransacao;
+    private TransacaoTipos transacaoTipos;
 
-    public Transacao(Double valorTransacao, LocalDate dataTransacao, TipoTransacao tipoTransacao) {
+    public Transacao(Double valorTransacao, LocalDate dataTransacao, TransacaoTipos transacaoTipos) {
         this.valorTransacao = valorTransacao;
         this.dataTransacao = dataTransacao;
-        this.tipoTransacao = tipoTransacao;
+        this.transacaoTipos = transacaoTipos;
     }
 
 //    private String formatValorTransacao() {
@@ -33,7 +33,7 @@ public class Transacao {
     @Override
     public String toString() {
         return String.format("\t%s\t%s\t%s",
-                this.tipoTransacao.getCharReferencia(),
+                this.transacaoTipos.getCharReferencia(),
                 DecimalFormat.getCurrencyInstance().format(this.valorTransacao),
                 dataTransacao.format(FORMATTER));
     }
