@@ -59,4 +59,8 @@ public abstract class Conta {
     public void registraTransacao(Transacao novaTransacao) {
         this.transacoes.add(novaTransacao);
     }
+
+    public void mensagemOperacao(TipoTransacao tipoTransacao) {
+        //TODO verificar a necessidade.
+    }
 }

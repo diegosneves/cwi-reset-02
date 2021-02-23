@@ -4,9 +4,9 @@ package br.com.banco.desgraca.domain;
  * Enumerador para facilitar os calculos usando os atributos com os valores setados conforme as regras.
  */
 public enum TaxasTransacoes {
-    CC("Conta Corrente", 0.0, 0.01, 0.0, 5.0),
-    CP("Conta Poupança", 0.02, 0.0, 0.005, 50.0),
-    CD("Conta Digital", 0.0, 0.01, 10.0, 10.0);
+    CC("CONTA CORRENTE", 0.0, 0.01, 0.0, 5.0),
+    CP("CONTA POUPANÇA", 0.02, 0.0, 0.005, 50.0),
+    CD("CONTA DIGITAL", 0.0, 0.01, 10.0, 10.0);
 
     private String tipoDeConta;
     private Double taxaSaque, taxaTranferenciaOutrasInstituicoes, taxaTranferenciaMesmaInstituicao, valorMinimoSaque;

@@ -1,11 +1,11 @@
 package br.com.banco.desgraca.domain;
 
 public enum InstituicaoBancaria {
-    BANCO_DO_BRASIL("Banco do Brasil", false, true),
-    BRADESCO("Bradesco", false, true),
-    CAIXA("Caixa Econômica Federal", false, true),
-    ITAU("Itaú", true, true),
-    NUBANK("Nubank", true, false);
+    BANCO_DO_BRASIL("BANCO DO BRASIL", false, true),
+    BRADESCO("BRADESCO", false, true),
+    CAIXA("CAIXA ECONÔMICA FEDERAL", false, true),
+    ITAU("ITAÚ", true, true),
+    NUBANK("NUBANK", true, false);
 
     private String nome;
     private Boolean aceitaContaDigital, aceitaContaPoupanca;

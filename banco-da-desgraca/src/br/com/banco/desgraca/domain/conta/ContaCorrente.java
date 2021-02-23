@@ -6,6 +6,7 @@ import br.com.banco.desgraca.domain.TaxasTransacoes;
 import br.com.banco.desgraca.domain.Transacao;
 import br.com.banco.desgraca.exception.SaldoInsuficienteException;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 public class ContaCorrente extends Conta implements ContaBancaria {
@@ -30,6 +31,9 @@ public class ContaCorrente extends Conta implements ContaBancaria {
 
     @Override
     public void depositar(Double valor) {
+        System.out.printf("Depositando valor %s na %s\n",
+                DecimalFormat.getCurrencyInstance().format(valor),
+                this.toString());
         registraTransacao(new Transacao(valor, Data.getDataTransacao(), TipoTransacao.DEPOSITO));
         setSaldo(getSaldo() + valor);
     }
@@ -39,6 +43,10 @@ public class ContaCorrente extends Conta implements ContaBancaria {
         if(valor > getSaldo()){
             throw new SaldoInsuficienteException("Você não Possui Saldo Suficiente para Sacar!!");
         }
+        System.out.printf("Sacando valor %s da %s\n",
+                DecimalFormat.getCurrencyInstance().format(valor),
+                this.toString());
+
         registraTransacao(new Transacao(valor, Data.getDataTransacao(), TipoTransacao.SAQUE));
         setSaldo(getSaldo() - valor);
     }
