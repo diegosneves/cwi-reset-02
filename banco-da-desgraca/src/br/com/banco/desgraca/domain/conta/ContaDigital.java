@@ -7,10 +7,10 @@ import br.com.banco.desgraca.domain.ValidaBanco;
 
 public class ContaDigital extends Conta {
 
-    private static final TaxasTransacoes TIPO_DE_CONTA = TaxasTransacoes.CD;
+    private static final TaxasTransacoes TAXAS_DE_CONTA = TaxasTransacoes.CD;
 
     public ContaDigital(Integer numeroDaConta, InstituicaoBancaria banco) {
-        super(numeroDaConta, ValidaBanco.validarAberturaDeConta(banco, TIPO_DE_CONTA));
+        super(numeroDaConta, ValidaBanco.validarAberturaDeConta(banco, TAXAS_DE_CONTA));
     }
 
     @Override
@@ -20,16 +20,16 @@ public class ContaDigital extends Conta {
 
     @Override
     public void sacar(Double valor) {
-        super.sacar(OperacoesFinanceiras.sacarDinheiro(valor, TIPO_DE_CONTA, this));
+        super.sacar(OperacoesFinanceiras.sacarDinheiro(valor, TAXAS_DE_CONTA, this));
     }
 
     @Override
     public void transferir(Double valor, ContaBancaria contaDestino) {
-        super.transferir(OperacoesFinanceiras.transferenciaEntreContas(TIPO_DE_CONTA, valor, this, contaDestino), contaDestino);
+        super.transferir(OperacoesFinanceiras.transferenciaEntreContas(TAXAS_DE_CONTA, valor, this, contaDestino), contaDestino);
     }
 
     @Override
     public String toString() {
-        return String.format("%s %s %s", TIPO_DE_CONTA.getTipoDeConta(), getInstituicaoBancaria().getNome(), getNumeroDaConta());
+        return String.format("%s %s %s", TAXAS_DE_CONTA.getTipoDeConta(), getInstituicaoBancaria().getNome(), getNumeroDaConta());
     }
 }

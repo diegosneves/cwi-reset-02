@@ -1,7 +1,7 @@
 package br.com.banco.desgraca.domain;
 
 /**
- * Enumerador para facilitar os calculos usando os atributos com os valores setados conforme as regras.
+ * Enumerador usado para facilitar os calculos usando  as taxas definidas nas regras do enunciado.
  */
 public enum TaxasTransacoes {
     CC("CONTA CORRENTE", 0.0, 0.01, 0.0, 5.0),

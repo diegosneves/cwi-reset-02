@@ -79,30 +79,37 @@ public abstract class Conta implements ContaBancaria {
         setSaldo(this.saldo - valor);
     }
 
+    /**
+     * Método que recebe valores do tipo LocalDate ou valores null e verifica no ArrayList transacoes as datas conforme regras.
+     * Caso ambos os parametros sejam null imprime todas as datas do ArrayList.
+     * @param inicio Se o valor for null busca a partir da primeira ocorrencia, caso contrario, busca a partir da data informada.
+     * @param fim Se o valor for null a busca será até a ultima ocorrencia, caso contrario, a busca será até a data informada.
+     */
     private void historicoTransacao(LocalDate inicio, LocalDate fim) {
-        //FIXME
         if (inicio != null && fim == null) {
-            //TODO
             for (Transacao transacao : getTransacoes()) {
+                //Ao percorrer o ArrayList verifica se a data de transação é igual ou maior ao do parametro inicio, em caso de posivito imprime o objeto.
                 if (transacao.getDataTransacao().isEqual(inicio) || transacao.getDataTransacao().isAfter(inicio)) {
                     System.out.println(transacao);
                 }
             }
         } else if (inicio == null && fim != null) {
-            //TODO
             for (Transacao transacao : getTransacoes()) {
+                //Ao percorrer o ArrayList verifica se a data de transação é igual ou menor ao do parametro fim, em caso de posivito imprime o objeto.
                 if (transacao.getDataTransacao().isEqual(fim) || transacao.getDataTransacao().isBefore(fim)) {
                     System.out.println(transacao);
                 }
             }
         } else if (inicio != null && fim != null) {
             for (Transacao transacao : getTransacoes()) {
+                //Percorre o ArrayList e imprime apenas os valores que estão entre os parâmetros informados(inicio e fim).
                 if ((transacao.getDataTransacao().isEqual(inicio) || transacao.getDataTransacao().isAfter(inicio)) &&
                         (transacao.getDataTransacao().isEqual(fim) || transacao.getDataTransacao().isBefore(fim))) {
                     System.out.println(transacao);
                 }
             }
         } else {
+            //Caso os parâmetros sejam null, imprime todos os valores do ArrayList
             for (Transacao transacao : getTransacoes()) {
                 System.out.println(transacao);
             }
@@ -112,7 +119,6 @@ public abstract class Conta implements ContaBancaria {
 
     @Override
     public void exibirExtrato(LocalDate inicio, LocalDate fim) {
-        //FIXME
         System.out.printf("\t----- EXTRATO %s\n", this.toString());
         historicoTransacao(inicio, fim);
         System.out.println("\t-----");

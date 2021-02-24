@@ -17,7 +17,6 @@ public class OperacoesFinanceiras {
     private static final TipoTransacao TRANFERENCIA = TipoTransacao.TRANFERENCIA;
 
     public static Double depositarNaConta(Double valor, ContaBancaria contaOrigem){
-        //TODO
         mensagemOperacao(DEPOSITO, valor, contaOrigem);
         return valor;
     }
@@ -35,11 +34,11 @@ public class OperacoesFinanceiras {
 
     private static boolean regrasDeSaque(TaxasTransacoes tipoDeConta, Double valor){
         if (tipoDeConta == TaxasTransacoes.CC){
-            return (valor % 5 == 0);
+            return (valor % TaxasTransacoes.CC.getValorMinimoSaque() == 0);
         } else if (tipoDeConta == TaxasTransacoes.CD){
-            return (valor >= 10.0);
+            return (valor >= TaxasTransacoes.CD.getValorMinimoSaque());
         } else if (tipoDeConta == TaxasTransacoes.CP) {
-            return (valor >= 50.0);
+            return (valor >= TaxasTransacoes.CP.getValorMinimoSaque());
         } else {
             return false;
         }

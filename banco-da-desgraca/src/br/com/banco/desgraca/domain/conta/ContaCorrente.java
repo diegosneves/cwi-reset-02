@@ -6,7 +6,7 @@ import br.com.banco.desgraca.domain.OperacoesFinanceiras;
 
 public class ContaCorrente extends Conta {
 
-    private static final TaxasTransacoes TIPO_DE_CONTA = TaxasTransacoes.CC;
+    private static final TaxasTransacoes TAXAS_DE_CONTA = TaxasTransacoes.CC;
 
 
     public ContaCorrente(Integer numeroDaConta, InstituicaoBancaria banco) {
@@ -20,16 +20,16 @@ public class ContaCorrente extends Conta {
 
     @Override
     public void sacar(Double valor) {
-        super.sacar(OperacoesFinanceiras.sacarDinheiro(valor, TIPO_DE_CONTA, this));
+        super.sacar(OperacoesFinanceiras.sacarDinheiro(valor, TAXAS_DE_CONTA, this));
     }
 
     @Override
     public void transferir(Double valor, ContaBancaria contaDestino) {
-        super.transferir(OperacoesFinanceiras.transferenciaEntreContas(TIPO_DE_CONTA, valor, this, contaDestino), contaDestino);
+        super.transferir(OperacoesFinanceiras.transferenciaEntreContas(TAXAS_DE_CONTA, valor, this, contaDestino), contaDestino);
     }
 
     @Override
     public String toString() {
-        return String.format("%s %s %s", TIPO_DE_CONTA.getTipoDeConta(), getInstituicaoBancaria().getNome(), getNumeroDaConta());
+        return String.format("%s %s %s", TAXAS_DE_CONTA.getTipoDeConta(), getInstituicaoBancaria().getNome(), getNumeroDaConta());
     }
 }
