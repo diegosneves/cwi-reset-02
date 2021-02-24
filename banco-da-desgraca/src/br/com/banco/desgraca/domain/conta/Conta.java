@@ -2,6 +2,7 @@ package br.com.banco.desgraca.domain.conta;
 
 import br.com.banco.desgraca.Data;
 import br.com.banco.desgraca.domain.InstituicaoBancaria;
+import br.com.banco.desgraca.domain.TipoTransacao;
 import br.com.banco.desgraca.domain.Transacao;
 
 import java.time.LocalDate;
@@ -62,19 +63,19 @@ public abstract class Conta implements ContaBancaria {
 
     @Override
     public void depositar(Double valor) {
-        registraTransacao(new Transacao(valor, Data.getDataTransacao(), TransacaoTipos.DEPOSITO));
+        registraTransacao(new Transacao(valor, Data.getDataTransacao(), TipoTransacao.DEPOSITO));
         setSaldo(this.saldo + valor);
     }
 
     @Override
     public void sacar(Double valor) {
-        registraTransacao(new Transacao(valor, Data.getDataTransacao(), TransacaoTipos.SAQUE));
+        registraTransacao(new Transacao(valor, Data.getDataTransacao(), TipoTransacao.SAQUE));
         setSaldo(this.saldo - valor);
     }
 
     @Override
     public void transferir(Double valor, ContaBancaria contaDestino) {
-        registraTransacao(new Transacao(valor, Data.getDataTransacao(), TransacaoTipos.TRANFERENCIA));
+        registraTransacao(new Transacao(valor, Data.getDataTransacao(), TipoTransacao.TRANFERENCIA));
         setSaldo(this.saldo - valor);
     }
 

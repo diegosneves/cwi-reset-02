@@ -22,8 +22,8 @@ public class BancoDaDesgraca {
         cc1.depositar(100.0);
 //        cc1.sacar(20.0);
 
-        cc1.exibirExtrato(null , null);
-        cc2.exibirExtrato(null , null);
+//        cc1.exibirExtrato(null , null);
+//        cc2.exibirExtrato(null , null);
 //        cc1.depositar(20.0);
 
         System.out.println("CC1 " + cc1.consultarSaldo());
@@ -36,8 +36,8 @@ public class BancoDaDesgraca {
 //        System.out.println("CC1 " + cc1.consultarSaldo());
 //        System.out.println("CC2 " + cc2.consultarSaldo());
 
-        cc1.exibirExtrato(null , null);
-        cc2.exibirExtrato(null , null);
+//        cc1.exibirExtrato(null , null);
+//        cc2.exibirExtrato(null , null);
 //        cc3.exibirExtrato(null , null);
 
         System.out.println("CC1 " + cc1.consultarSaldo());
@@ -48,9 +48,10 @@ public class BancoDaDesgraca {
 //        cc1.transferir(20.0, cc3);
 //
         cc1.exibirExtrato(incio , fim);
+        cc1.exibirExtrato(null , null);
 //        cc3.exibirExtrato(null , null);
 //
-//        System.out.println("CC1 " + cc1.consultarSaldo());
+        System.out.println("CC1 " + cc1.consultarSaldo());
 //        System.out.println("CC3 " + cc3.consultarSaldo());
 
 
