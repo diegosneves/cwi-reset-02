@@ -82,6 +82,7 @@ public abstract class Conta implements ContaBancaria {
     /**
      * Método que recebe valores do tipo LocalDate ou valores null e verifica no ArrayList transacoes as datas conforme regras.
      * Caso ambos os parametros sejam null imprime todas as datas do ArrayList.
+     *
      * @param inicio Se o valor for null busca a partir da primeira ocorrencia, caso contrario, busca a partir da data informada.
      * @param fim Se o valor for null a busca será até a ultima ocorrencia, caso contrario, a busca será até a data informada.
      */
