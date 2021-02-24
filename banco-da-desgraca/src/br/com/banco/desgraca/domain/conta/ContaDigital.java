@@ -8,7 +8,6 @@ import br.com.banco.desgraca.exception.InstituicaoBancariaInvalidaException;
 
 public class ContaDigital extends Conta {
 
-//    private static final String TIPO_DE_CONTA = "Conta Digital";
     private static final TaxasTransacoes TIPO_DE_CONTA = TaxasTransacoes.CD;
 
     public ContaDigital(Integer numeroDaConta, InstituicaoBancaria banco) {

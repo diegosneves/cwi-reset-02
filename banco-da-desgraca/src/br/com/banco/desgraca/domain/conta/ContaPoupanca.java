@@ -9,7 +9,6 @@ import java.time.LocalDate;
 
 public class ContaPoupanca extends Conta{
 
-//    private static final String TIPO_DE_CONTA = "Conta Poupança";
     private static final TaxasTransacoes TIPO_DE_CONTA = TaxasTransacoes.CP;
 
     public ContaPoupanca(Integer numeroDaConta, InstituicaoBancaria banco) {

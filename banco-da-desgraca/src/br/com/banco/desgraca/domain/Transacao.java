@@ -19,16 +19,9 @@ public class Transacao {
         this.transacaoTipos = transacaoTipos;
     }
 
-//    private String formatValorTransacao() {
-//        //FIXME Verificar a necessidade deste método.
-//        return DecimalFormat.getCurrencyInstance().format(this.valorTransacao);
-//    }
-
-//    private String formatDataTransacao() {
-//        //FIXME Verificar a necessidade deste método.
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//        return LocalDate.parse(dataTransacao.toString(), FORMATTER).toString();
-//    }
+    public LocalDate getDataTransacao() {
+        return dataTransacao;
+    }
 
     @Override
     public String toString() {

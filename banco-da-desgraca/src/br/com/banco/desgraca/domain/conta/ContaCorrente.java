@@ -6,7 +6,6 @@ import br.com.banco.desgraca.domain.TipoTransacao;
 
 public class ContaCorrente extends Conta {
 
-//    private static final String TIPO_DE_CONTA = "Conta Corrente";
     private static final TaxasTransacoes TIPO_DE_CONTA = TaxasTransacoes.CC;
 
 
@@ -26,9 +25,6 @@ public class ContaCorrente extends Conta {
 
     @Override
     public void transferir(Double valor, ContaBancaria contaDestino) {
-        //FIXME Retirar os comentarios
-//        transferenciaEntreContas(valor,contaDestino);
-//        TipoTransacao.transferenciaEntreContas(TIPO_DE_CONTA, valor, this, contaDestino);
         super.transferir(TipoTransacao.transferenciaEntreContas(TIPO_DE_CONTA, valor, this, contaDestino), contaDestino);
     }
 
