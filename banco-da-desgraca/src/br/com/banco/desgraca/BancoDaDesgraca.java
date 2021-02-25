@@ -18,22 +18,22 @@ public class BancoDaDesgraca {
         ContaBancaria cc1 = new ContaDigital(123, InstituicaoBancaria.NUBANK);
         ContaBancaria cc2 = new ContaCorrente(456, InstituicaoBancaria.BRADESCO);
         ContaBancaria cc3 = new ContaPoupanca(789, InstituicaoBancaria.BANCO_DO_BRASIL);
-        ContaBancaria cc4 = new ContaPoupanca(789, InstituicaoBancaria.NUBANK);
+//        ContaBancaria cc4 = new ContaPoupanca(789, InstituicaoBancaria.NUBANK);
 
         cc1.depositar(100.0);
-        cc2.depositar(100.0);
-        cc2.sacar(15.0);
+//        cc2.depositar(100.0);
+//        cc2.sacar(15.0);
 
 //        cc1.exibirExtrato(null , null);
 //        cc2.exibirExtrato(null , null);
-//        cc1.depositar(20.0);
+        cc1.depositar(20.0);
 
         System.out.println("CC1 " + cc1.consultarSaldo());
-        System.out.println("CC2 " + cc2.consultarSaldo());
+//        System.out.println("CC2 " + cc2.consultarSaldo());
 //        System.out.println("CC3 " + cc3.consultarSaldo());
 
         cc1.transferir(20.0, cc2);
-//        cc1.transferir(20.0, cc3);
+        cc1.transferir(20.0, cc3);
 
 //        System.out.println("CC1 " + cc1.consultarSaldo());
 //        System.out.println("CC2 " + cc2.consultarSaldo());

@@ -88,21 +88,21 @@ public abstract class Conta implements ContaBancaria {
      * @param fim Se o valor for null a busca será até a ultima ocorrencia, caso contrario, a busca será até a data informada.
      */
     private void historicoTransacao(LocalDate inicio, LocalDate fim) {
-        if (inicio != null && fim == null) {
+        if (Objects.nonNull(inicio) && Objects.isNull(fim)) {
             for (Transacao transacao : getTransacoes()) {
                 //Ao percorrer o ArrayList verifica se a data de transação é igual ou maior ao do parametro inicio, em caso de posivito imprime o objeto.
                 if (transacao.getDataTransacao().isEqual(inicio) || transacao.getDataTransacao().isAfter(inicio)) {
                     System.out.println(transacao);
                 }
             }
-        } else if (inicio == null && fim != null) {
+        } else if (Objects.isNull(inicio) && Objects.nonNull(fim)) {
             for (Transacao transacao : getTransacoes()) {
                 //Ao percorrer o ArrayList verifica se a data de transação é igual ou menor ao do parametro fim, em caso de posivito imprime o objeto.
                 if (transacao.getDataTransacao().isEqual(fim) || transacao.getDataTransacao().isBefore(fim)) {
                     System.out.println(transacao);
                 }
             }
-        } else if (inicio != null && fim != null) {
+        } else if (Objects.nonNull(inicio) && Objects.nonNull(fim)) {
             for (Transacao transacao : getTransacoes()) {
                 //Percorre o ArrayList e imprime apenas os valores que estão entre os parâmetros informados(inicio e fim).
                 if ((transacao.getDataTransacao().isEqual(inicio) || transacao.getDataTransacao().isAfter(inicio)) &&
