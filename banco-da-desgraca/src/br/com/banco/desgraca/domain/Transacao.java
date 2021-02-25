@@ -4,6 +4,12 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Classe Transacao registra as operações financeiras, tendo como atributos:
+ * Valor da Transação
+ * Data da Transação
+ * Tipo da Transação(Saque, Depósito ou Transferência)
+ */
 public class Transacao {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");

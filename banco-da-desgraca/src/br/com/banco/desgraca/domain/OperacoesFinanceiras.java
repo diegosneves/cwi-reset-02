@@ -105,7 +105,7 @@ public class OperacoesFinanceiras {
      */
     public static Double transferenciaEntreContas(TaxasTransacoes taxasDaConta, Double valor,
                                                   ContaBancaria contaOrigem, ContaBancaria contaDestino) {
-        //Verifica se a conta de origem e conta de destino são da mesma instituição bancaria.
+        //Verifica se a conta de origem e conta de destino são ou não da mesma instituição bancaria.
         if(contaOrigem.getInstituicaoBancaria() != contaDestino.getInstituicaoBancaria()){
             //Para Instituições Bancarias diferentes.
             //Verifica se o valor mais taxas de transferencia é maior que o saldo disponivel da conta de origem. Caso positivo lança uma exception.

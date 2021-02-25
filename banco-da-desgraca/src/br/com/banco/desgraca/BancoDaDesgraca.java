@@ -18,6 +18,7 @@ public class BancoDaDesgraca {
         ContaBancaria cc1 = new ContaDigital(123, InstituicaoBancaria.NUBANK);
         ContaBancaria cc2 = new ContaCorrente(456, InstituicaoBancaria.BRADESCO);
         ContaBancaria cc3 = new ContaPoupanca(789, InstituicaoBancaria.BANCO_DO_BRASIL);
+        ContaBancaria cc4 = new ContaPoupanca(789, InstituicaoBancaria.NUBANK);
 
         cc1.depositar(100.0);
         cc2.depositar(100.0);
