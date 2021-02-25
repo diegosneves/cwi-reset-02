@@ -63,11 +63,11 @@ public class OperacoesFinanceiras {
      * @return Retorna um boolean (true - para invalidar a operação | false - para validar a operação).
      */
     private static boolean regrasDeSaque(TaxasTransacoes taxasDaConta, Double valor){
-        if (taxasDaConta == CONTA_CORRENTE){
+        if (taxasDaConta.equals(CONTA_CORRENTE)){
             return !(valor % CONTA_CORRENTE.getValorMinimoSaque() == 0);
-        } else if (taxasDaConta == CONTA_DIGITAL){
+        } else if (taxasDaConta.equals(CONTA_DIGITAL)){
             return !(valor >= CONTA_DIGITAL.getValorMinimoSaque());
-        } else if (taxasDaConta == CONTA_POUPANCA) {
+        } else if (taxasDaConta.equals(CONTA_POUPANCA)) {
             return !(valor >= CONTA_POUPANCA.getValorMinimoSaque());
         } else {
             return true;
@@ -81,12 +81,12 @@ public class OperacoesFinanceiras {
      * @return Retorna uma String contendo a mensagem de erro de acorodo com cada tipo de conta(Conta Corrente, Conta Digital ou Conta Poupança).
      */
     private static String valorInvalidoMensagem(TaxasTransacoes taxasDaConta){
-        if(taxasDaConta == CONTA_CORRENTE){
+        if(taxasDaConta.equals(CONTA_CORRENTE)){
             return String.format("\nO valor Solicitado é inválido!\n" +
                     "Notas disponiveis: \nR$ 5,00 - R$ 10,00 - R$ 20,00 - R$ 50,00 - R$ 100,00 - R$ 200,00\n");
-        } else if (taxasDaConta == CONTA_DIGITAL) {
+        } else if (taxasDaConta.equals(CONTA_DIGITAL)) {
             return String.format("\nO menor valor dispónivel para saque é de R$ 10,00\n");
-        } else if (taxasDaConta == CONTA_POUPANCA) {
+        } else if (taxasDaConta.equals(CONTA_POUPANCA)) {
             return String.format("\nO menor valor dispónivel para saque é de R$ 50,00\n");
         } else {
             return String.format("\nValor Inválido!!!\n");
@@ -136,11 +136,11 @@ public class OperacoesFinanceiras {
      * @param contaOrigem Conta Bancaria que está efetuando a operação financeira.
      */
     private static void mensagemOperacao(TipoTransacao tipoTransacao, Double valor, ContaBancaria contaOrigem) {
-        if(tipoTransacao == DEPOSITO){
+        if(tipoTransacao.equals(DEPOSITO)){
             System.out.printf("Depositando valor %s na %s\n",
                     DecimalFormat.getCurrencyInstance().format(valor),
                     contaOrigem.toString());
-        } else if (tipoTransacao == SAQUE) {
+        } else if (tipoTransacao.equals(SAQUE)) {
             System.out.printf("Sacando valor %s da %s\n",
                     DecimalFormat.getCurrencyInstance().format(valor),
                     contaOrigem.toString());
@@ -157,7 +157,7 @@ public class OperacoesFinanceiras {
      */
     private static void mensagemOperacao(TipoTransacao tipoTransacao, Double valor,
                                          ContaBancaria contaOrigem, ContaBancaria contaDestino) {
-        if (tipoTransacao == TRANFERENCIA) {
+        if (tipoTransacao.equals(TRANFERENCIA)) {
             System.out.printf("Tranferindo valor %s da %s para %s\n",
                     DecimalFormat.getCurrencyInstance().format(valor),
                     contaOrigem.toString(),
@@ -165,8 +165,5 @@ public class OperacoesFinanceiras {
 
         }
     }
-
-
-
 
 }
