@@ -85,9 +85,9 @@ public class OperacoesFinanceiras {
             return String.format("\nO valor Solicitado é inválido!\n" +
                     "Notas disponiveis: \nR$ 5,00 - R$ 10,00 - R$ 20,00 - R$ 50,00 - R$ 100,00 - R$ 200,00\n");
         } else if (taxasDaConta == CONTA_DIGITAL) {
-            return String.format("\nO menor dispónivel para saque é de R$ 10,00\n");
+            return String.format("\nO menor valor dispónivel para saque é de R$ 10,00\n");
         } else if (taxasDaConta == CONTA_POUPANCA) {
-            return String.format("\nO menor dispónivel para saque é de R$ 50,00\n");
+            return String.format("\nO menor valor dispónivel para saque é de R$ 50,00\n");
         } else {
             return String.format("\nValor Inválido!!!\n");
         }

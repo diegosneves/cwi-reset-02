@@ -20,7 +20,8 @@ public class BancoDaDesgraca {
         ContaBancaria cc3 = new ContaPoupanca(789, InstituicaoBancaria.BANCO_DO_BRASIL);
 
         cc1.depositar(100.0);
-//        cc1.sacar(20.0);
+        cc2.depositar(100.0);
+        cc2.sacar(15.0);
 
 //        cc1.exibirExtrato(null , null);
 //        cc2.exibirExtrato(null , null);
