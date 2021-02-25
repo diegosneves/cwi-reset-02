@@ -11,9 +11,9 @@ import java.text.DecimalFormat;
  */
 public class OperacoesFinanceiras {
 
-    private static final TaxasTransacoes CONTA_CORRENTE = TaxasTransacoes.CC;
-    private static final TaxasTransacoes CONTA_POUPANCA = TaxasTransacoes.CP;
-    private static final TaxasTransacoes CONTA_DIGITAL = TaxasTransacoes.CD;
+    private static final DadosDaContaBancaria CONTA_CORRENTE = DadosDaContaBancaria.CC;
+    private static final DadosDaContaBancaria CONTA_POUPANCA = DadosDaContaBancaria.CP;
+    private static final DadosDaContaBancaria CONTA_DIGITAL = DadosDaContaBancaria.CD;
 
     private static final TipoTransacao SAQUE = TipoTransacao.SAQUE;
     private static final TipoTransacao DEPOSITO = TipoTransacao.DEPOSITO;
@@ -39,7 +39,7 @@ public class OperacoesFinanceiras {
      * @param contaOrigem Conta Bancaria que irá efetuar o saque.
      * @return Valor à ser sacado.
      */
-    public static Double sacarDinheiro(Double valor, TaxasTransacoes taxasDaConta, ContaBancaria contaOrigem){
+    public static Double sacarDinheiro(Double valor, DadosDaContaBancaria taxasDaConta, ContaBancaria contaOrigem){
 
         //Verifica se o valor do saque mais as taxas são maiores que o saldo da conta, se sim, lança uma exception
         if ((valor * (1 + taxasDaConta.getTaxaSaque())) > contaOrigem.consultarSaldo()){
@@ -62,7 +62,7 @@ public class OperacoesFinanceiras {
      * @param valor Valor de saque solicitado;
      * @return Retorna um boolean (true - para invalidar a operação | false - para validar a operação).
      */
-    private static boolean regrasDeSaque(TaxasTransacoes taxasDaConta, Double valor){
+    private static boolean regrasDeSaque(DadosDaContaBancaria taxasDaConta, Double valor){
         if (taxasDaConta.equals(CONTA_CORRENTE)){
             return !(valor % CONTA_CORRENTE.getValorMinimoSaque() == 0);
         } else if (taxasDaConta.equals(CONTA_DIGITAL)){
@@ -80,7 +80,7 @@ public class OperacoesFinanceiras {
      * @param taxasDaConta Enumerador que contém as informações de valor minimo de saque de acordo com cada tipo de conta(Conta Corrente, Conta Digital ou Conta Poupança).
      * @return Retorna uma String contendo a mensagem de erro de acorodo com cada tipo de conta(Conta Corrente, Conta Digital ou Conta Poupança).
      */
-    private static String valorInvalidoMensagem(TaxasTransacoes taxasDaConta){
+    private static String valorInvalidoMensagem(DadosDaContaBancaria taxasDaConta){
         if(taxasDaConta.equals(CONTA_CORRENTE)){
             return String.format("\nO valor Solicitado é inválido!\n" +
                     "Notas disponiveis: \nR$ 5,00 - R$ 10,00 - R$ 20,00 - R$ 50,00 - R$ 100,00 - R$ 200,00\n");
@@ -103,7 +103,7 @@ public class OperacoesFinanceiras {
      * @param contaDestino Conta de destino da transferencia(Onde está entrando o dinheiro transferido).
      * @return Retorna o valor de transferencia para registro.
      */
-    public static Double transferenciaEntreContas(TaxasTransacoes taxasDaConta, Double valor,
+    public static Double transferenciaEntreContas(DadosDaContaBancaria taxasDaConta, Double valor,
                                                   ContaBancaria contaOrigem, ContaBancaria contaDestino) {
         //Verifica se a conta de origem e conta de destino são ou não da mesma instituição bancaria.
         if(contaOrigem.getInstituicaoBancaria() != contaDestino.getInstituicaoBancaria()){
