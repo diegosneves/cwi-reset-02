@@ -3,14 +3,24 @@ package br.com.banco.desgraca.domain.conta;
 import br.com.banco.desgraca.domain.InstituicaoBancaria;
 import br.com.banco.desgraca.domain.DadosDaContaBancaria;
 import br.com.banco.desgraca.domain.OperacoesFinanceiras;
-import br.com.banco.desgraca.domain.ValidarAberturaConta;
+import br.com.banco.desgraca.domain.ValidarAberturaContaBancaria;
+import br.com.banco.desgraca.exception.InstituicaoBancariaInvalidaException;
 
 public class ContaDigital extends Conta {
 
-    private static final DadosDaContaBancaria DADOS_DA_CONTA_BANCARIA = DadosDaContaBancaria.CD;
+    private static final DadosDaContaBancaria DADOS_DA_CONTA_BANCARIA = DadosDaContaBancaria.CONTA_DIGITAL;
 
     public ContaDigital(Integer numeroDaConta, InstituicaoBancaria banco) {
-        super(numeroDaConta, ValidarAberturaConta.validarSuporteTipoDeConta(banco, DADOS_DA_CONTA_BANCARIA));
+        super(numeroDaConta, banco);
+        /*ValidarAberturaContaBancaria.validarSuporteTipoDeConta(this);*/
+
+        //Outra forma de fazer a verificação no construtor validando se a instituição financeira presta suporte ao tipo de conta,
+        //Neste caso Conta Digital
+        if (!this.getInstituicaoBancaria().getAceitaContaDigital()) {
+            throw new InstituicaoBancariaInvalidaException(String.format("\nInfelizmente o banco %s não tem Suporte para uma %s!!\n",
+                    this.getInstituicaoBancaria().getNome(),
+                    DADOS_DA_CONTA_BANCARIA.getTipoDeConta()));
+        }
     }
 
     @Override

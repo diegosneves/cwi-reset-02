@@ -4,9 +4,9 @@ package br.com.banco.desgraca.domain;
  * Enumerador usado para facilitar os calculos usando  as taxas definidas nas regras do enunciado.
  */
 public enum DadosDaContaBancaria {
-    CC("CONTA CORRENTE", 0.0, 0.01, 0.0, 5.0),
-    CP("CONTA POUPANÇA", 0.02, 0.0, 0.005, 50.0),
-    CD("CONTA DIGITAL", 0.0, 0.01, 10.0, 10.0);
+    CONTA_CORRENTE("CONTA CORRENTE", 0.0, 0.01, 0.0, 5.0),
+    CONTA_POUPANCA("CONTA POUPANÇA", 0.02, 0.0, 0.005, 50.0),
+    CONTA_DIGITAL("CONTA DIGITAL", 0.0, 0.01, 10.0, 10.0);
 
     private String tipoDeConta;
     private Double taxaSaque, taxaTranferenciaOutrasInstituicoes, taxaTranferenciaMesmaInstituicao, valorMinimoSaque;

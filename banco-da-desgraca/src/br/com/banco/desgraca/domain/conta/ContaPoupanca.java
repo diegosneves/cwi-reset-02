@@ -3,14 +3,15 @@ package br.com.banco.desgraca.domain.conta;
 import br.com.banco.desgraca.domain.InstituicaoBancaria;
 import br.com.banco.desgraca.domain.DadosDaContaBancaria;
 import br.com.banco.desgraca.domain.OperacoesFinanceiras;
-import br.com.banco.desgraca.domain.ValidarAberturaConta;
+import br.com.banco.desgraca.domain.ValidarAberturaContaBancaria;
 
 public class ContaPoupanca extends Conta{
 
-    private static final DadosDaContaBancaria DADOS_DA_CONTA_BANCARIA = DadosDaContaBancaria.CP;
+    private static final DadosDaContaBancaria DADOS_DA_CONTA_BANCARIA = DadosDaContaBancaria.CONTA_POUPANCA;
 
     public ContaPoupanca(Integer numeroDaConta, InstituicaoBancaria banco) {
-        super(numeroDaConta, ValidarAberturaConta.validarSuporteTipoDeConta(banco, DADOS_DA_CONTA_BANCARIA));
+        super(numeroDaConta, banco);
+        ValidarAberturaContaBancaria.validarSuporteTipoDeConta(this);
     }
 
     @Override

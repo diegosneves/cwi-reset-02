@@ -11,9 +11,9 @@ import java.text.DecimalFormat;
  */
 public class OperacoesFinanceiras {
 
-    private static final DadosDaContaBancaria CONTA_CORRENTE = DadosDaContaBancaria.CC;
-    private static final DadosDaContaBancaria CONTA_POUPANCA = DadosDaContaBancaria.CP;
-    private static final DadosDaContaBancaria CONTA_DIGITAL = DadosDaContaBancaria.CD;
+    private static final DadosDaContaBancaria CONTA_CORRENTE = DadosDaContaBancaria.CONTA_CORRENTE;
+    private static final DadosDaContaBancaria CONTA_POUPANCA = DadosDaContaBancaria.CONTA_POUPANCA;
+    private static final DadosDaContaBancaria CONTA_DIGITAL = DadosDaContaBancaria.CONTA_DIGITAL;
 
     private static final TipoTransacao SAQUE = TipoTransacao.SAQUE;
     private static final TipoTransacao DEPOSITO = TipoTransacao.DEPOSITO;
@@ -43,7 +43,7 @@ public class OperacoesFinanceiras {
 
         //Verifica se o valor do saque mais as taxas são maiores que o saldo da conta, se sim, lança uma exception
         if ((valor * (1 + taxasDaConta.getTaxaSaque())) > contaOrigem.consultarSaldo()){
-            throw new SaldoInsuficienteException("Você não Possui Saldo Suficiente para Sacar!!");
+            throw new SaldoInsuficienteException("\nVocê não Possui Saldo Suficiente para Saque!!\n");
         }
 
         //Verifica se o valor do saque solicitado está de acordo com as regras de saque de cada tipo de conta(Conta Corrente, Conta Digital ou Conta Poupança)
@@ -110,7 +110,7 @@ public class OperacoesFinanceiras {
             //Para Instituições Bancarias diferentes.
             //Verifica se o valor mais taxas de transferencia é maior que o saldo disponivel da conta de origem. Caso positivo lança uma exception.
             if((valor * (1 + taxasDaConta.getTaxaTranferenciaOutrasInstituicoes())) > contaOrigem.consultarSaldo()){
-                throw new SaldoInsuficienteException("Você não Possui Saldo Suficiente para Sacar!!");
+                throw new SaldoInsuficienteException("\nVocê não Possui Saldo Suficiente para Transferencia!!\n");
             }
             mensagemOperacao(TRANFERENCIA, valor, contaOrigem, contaDestino);
             contaDestino.depositar(valor); //Deposita o valor da transferencia na conta de destino.
@@ -120,7 +120,7 @@ public class OperacoesFinanceiras {
             //Para Instituições Bancarias iguais.
             //Verifica se o valor de transferencia é maior que o saldo disponivel da conta de origem. Caso positivo lança uma exception.
             if(valor > contaOrigem.consultarSaldo()){
-                throw new SaldoInsuficienteException("Você não Possui Saldo Suficiente para Sacar!!");
+                throw new SaldoInsuficienteException("\nVocê não Possui Saldo Suficiente para Transferencia!!\n");
             }
             mensagemOperacao(TRANFERENCIA, valor, contaOrigem, contaDestino);
             contaDestino.depositar(valor); //Deposita o valor da transferencia na conta de destino.

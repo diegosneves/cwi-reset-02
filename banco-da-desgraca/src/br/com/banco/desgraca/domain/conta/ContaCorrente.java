@@ -6,7 +6,7 @@ import br.com.banco.desgraca.domain.OperacoesFinanceiras;
 
 public class ContaCorrente extends Conta {
 
-    private static final DadosDaContaBancaria DADOS_DA_CONTA_BANCARIA = DadosDaContaBancaria.CC;
+    private static final DadosDaContaBancaria DADOS_DA_CONTA_BANCARIA = DadosDaContaBancaria.CONTA_CORRENTE;
 
 
     public ContaCorrente(Integer numeroDaConta, InstituicaoBancaria banco) {
