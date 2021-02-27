@@ -5,7 +5,7 @@ package br.com.banco.desgraca.domain;
  */
 public enum DadosDaContaBancaria {
     CONTA_CORRENTE("CONTA CORRENTE", 0.0, 0.01, 0.0, 5.0),
-    CONTA_POUPANCA("CONTA POUPANÇA", 0.02, 0.0, 0.005, 50.0),
+    CONTA_POUPANCA("CONTA POUPANÇA", 0.02, 0.01, 0.005, 50.0),
     CONTA_DIGITAL("CONTA DIGITAL", 0.0, 0.01, 10.0, 10.0);
 
     private String tipoDeConta;
@@ -29,6 +29,10 @@ public enum DadosDaContaBancaria {
 
     public Double getTaxaTranferenciaOutrasInstituicoes() {
         return taxaTranferenciaOutrasInstituicoes;
+    }
+
+    public Double getTaxaTranferenciaMesmaInstituicao() {
+        return taxaTranferenciaMesmaInstituicao;
     }
 
     public Double getValorMinimoSaque() {

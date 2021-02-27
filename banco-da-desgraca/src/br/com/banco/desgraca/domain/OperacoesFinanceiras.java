@@ -1,6 +1,8 @@
 package br.com.banco.desgraca.domain;
 
 import br.com.banco.desgraca.domain.conta.ContaBancaria;
+import br.com.banco.desgraca.domain.conta.ContaDigital;
+import br.com.banco.desgraca.domain.conta.ContaPoupanca;
 import br.com.banco.desgraca.exception.SaldoInsuficienteException;
 import br.com.banco.desgraca.exception.ValorInvalidoException;
 
@@ -106,7 +108,18 @@ public class OperacoesFinanceiras {
     public static Double transferenciaEntreContas(DadosDaContaBancaria taxasDaConta, Double valor,
                                                   ContaBancaria contaOrigem, ContaBancaria contaDestino) {
         //Verifica se a conta de origem e conta de destino são ou não da mesma instituição bancaria.
+        if (contaOrigem instanceof ContaDigital){
+            //Verifica se o valor de transferencia é maior que o saldo disponivel da conta de origem. Caso positivo lança uma exception.
+            if(valor > contaOrigem.consultarSaldo()){
+                throw new SaldoInsuficienteException("\nVocê não Possui Saldo Suficiente para Transferencia!!\n");
+            }
+            mensagemOperacao(TRANFERENCIA, valor, contaOrigem, contaDestino);
+            contaDestino.depositar(valor); //Deposita o valor da transferencia na conta de destino.
+            return valor; //Retorna o valor para registro.
+        }
+
         if(contaOrigem.getInstituicaoBancaria() != contaDestino.getInstituicaoBancaria()){
+
             //Para Instituições Bancarias diferentes.
             //Verifica se o valor mais taxas de transferencia é maior que o saldo disponivel da conta de origem. Caso positivo lança uma exception.
             if((valor * (1 + taxasDaConta.getTaxaTranferenciaOutrasInstituicoes())) > contaOrigem.consultarSaldo()){
@@ -117,6 +130,17 @@ public class OperacoesFinanceiras {
             return (valor * (1 + taxasDaConta.getTaxaTranferenciaOutrasInstituicoes())); //Retorna o valor mais taxas para registro.
 
         } else {
+
+            if (contaOrigem instanceof ContaPoupanca) {
+                //Verifica se o valor mais taxas de transferencia é maior que o saldo disponivel da conta de origem. Caso positivo lança uma exception.
+                if((valor * (1 + taxasDaConta.getTaxaTranferenciaMesmaInstituicao()) > contaOrigem.consultarSaldo())){
+                    throw new SaldoInsuficienteException("\nVocê não Possui Saldo Suficiente para Transferencia!!\n");
+                }
+                mensagemOperacao(TRANFERENCIA, valor, contaOrigem, contaDestino);
+                contaDestino.depositar(valor); //Deposita o valor da transferencia na conta de destino.
+                return (valor * (1 + taxasDaConta.getTaxaTranferenciaMesmaInstituicao())); //Retorna o valor mais taxas para registro.
+            }
+
             //Para Instituições Bancarias iguais.
             //Verifica se o valor de transferencia é maior que o saldo disponivel da conta de origem. Caso positivo lança uma exception.
             if(valor > contaOrigem.consultarSaldo()){
