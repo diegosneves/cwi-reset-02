@@ -26,10 +26,20 @@ public class FilmeRepository {
         return filmes;
     }
 
-    public List<FilmeEntity> acharFilmesAtor(final Long id) {
+    public List<FilmeEntity> acharFilmesByAtor(final Long id) {
         //TODO Filtrar na repository por id de ator
+        List<FilmeEntity> filmesByAtor = new ArrayList<>();
 
-        return filmes;
+        for(FilmeEntity filmeEntity : filmes) {
+            for(Long idAtor : filmeEntity.getIdsAtores()) {
+                if (idAtor.equals(id)){
+                    filmesByAtor.add(filmeEntity);
+                    break;
+                }
+            }
+        }
+
+        return filmesByAtor;
     }
 
     public FilmeEntity acharFilmePorID(Long id) {
@@ -50,5 +60,17 @@ public class FilmeRepository {
         filmes.add(filmeSalvar);
 
         return filmeSalvar.getId();
+    }
+
+    public List<FilmeEntity> acharFilmesByDiretor(Long id) {
+
+        List<FilmeEntity> filmesByDiretor = new ArrayList<>();
+
+        for (FilmeEntity filmeEntity : filmes) {
+            if (filmeEntity.getIdDiretor().equals(id)) {
+                filmesByDiretor.add(filmeEntity);
+            }
+        }
+        return filmesByDiretor;
     }
 }

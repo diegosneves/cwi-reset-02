@@ -41,7 +41,7 @@ public class AtoresService {
 
     public ConsultarDetalhesAtorResponse consultarDetalhesAtor(final Long id) {
         AtorEntity atorSalvo = atoresRepository.acharAtorPorId(id);
-        List<FilmeEntity> filmesAtor = filmeRepository.acharFilmesAtor(id);
+        List<FilmeEntity> filmesAtor = filmeRepository.acharFilmesByAtor(id);
         return MAPPER_DETALHES_ATOR.mapear(atorSalvo, filmesAtor);
     }
 }

@@ -40,4 +40,18 @@ public class AtoresRepository {
 
         return null;
     }
+
+    public List<AtorEntity> acharAtoresByIdFilmes(Long id) {
+        List<AtorEntity> atorEntities = new ArrayList<>();
+
+        for(AtorEntity atorEntity : atores) {
+            for (Long idFilmes : atorEntity.getIdsFilmes()) {
+                if(idFilmes.equals(id)) {
+                    atorEntities.add(atorEntity);
+                    break;
+                }
+            }
+        }
+        return atorEntities;
+    }
 }
