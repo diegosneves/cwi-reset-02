@@ -1,5 +1,6 @@
 package br.com.cwi.resetflix.service;
 
+import br.com.cwi.resetflix.domain.Genero;
 import br.com.cwi.resetflix.entity.AtorEntity;
 import br.com.cwi.resetflix.entity.DiretorEntity;
 import br.com.cwi.resetflix.entity.FilmeEntity;
@@ -12,9 +13,11 @@ import br.com.cwi.resetflix.repository.FilmeRepository;
 import br.com.cwi.resetflix.request.CriarFilmeRequest;
 import br.com.cwi.resetflix.response.ConsultarDetalhesFilmeResponse;
 import br.com.cwi.resetflix.response.DiretoresResponse;
+import br.com.cwi.resetflix.response.FilmeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -47,5 +50,10 @@ public class FilmesService {
         FilmeEntity filmeSalvar = MAPPER_ENTITY.mapear(request);
 
         return filmeRepository.criarFilme(filmeSalvar);
+    }
+
+    public List<FilmeResponse> getFilmes(Genero genero) {
+        //TODO testar
+        return MAPPER_RESPONSE.mapear(filmeRepository.getFilmes(genero));
     }
 }

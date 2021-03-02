@@ -8,10 +8,10 @@ import br.com.cwi.resetflix.response.FilmeResponse;
 
 public class FilmeResponseMapper {
 
-    public List<FilmeResponse> mapear(final List<FilmeEntity> filmesAtor) {
+    public List<FilmeResponse> mapear(final List<FilmeEntity> filmes) {
         List<FilmeResponse> responses = new ArrayList<>();
 
-        for(FilmeEntity filmeEntity : filmesAtor){
+        for(FilmeEntity filmeEntity : filmes){
             responses.add(new FilmeResponse(filmeEntity.getId(),
                 filmeEntity.getNome(), filmeEntity.getGenero()));
         }

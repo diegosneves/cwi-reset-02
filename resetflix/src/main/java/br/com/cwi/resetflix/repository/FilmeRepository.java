@@ -26,6 +26,16 @@ public class FilmeRepository {
         return filmes;
     }
 
+    public List<FilmeEntity> getFilmes(Genero genero){
+        List<FilmeEntity> filmesByGenero = new ArrayList<>();
+        for (FilmeEntity filmeEntity : filmes) {
+            if(filmeEntity.getGenero().equals(genero)) {
+                filmesByGenero.add(filmeEntity);
+            }
+        }
+        return filmesByGenero;
+    }
+
     public List<FilmeEntity> acharFilmesByAtor(final Long id) {
         //TODO Filtrar na repository por id de ator
         List<FilmeEntity> filmesByAtor = new ArrayList<>();

@@ -29,7 +29,7 @@ public class FilmesController implements FilmesContract {
     @GetMapping
     public List<FilmeResponse> getFilmes(@RequestParam(value = "genero", required = false) final Genero genero) {
         //TODO realizar chamada
-        return Collections.emptyList();
+        return filmesService.getFilmes(genero);
     }
 
     @Override
