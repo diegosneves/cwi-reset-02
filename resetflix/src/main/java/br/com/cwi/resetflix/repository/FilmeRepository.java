@@ -28,6 +28,7 @@ public class FilmeRepository {
 
     public List<FilmeEntity> getFilmes(Genero genero){
         List<FilmeEntity> filmesByGenero = new ArrayList<>();
+
         for (FilmeEntity filmeEntity : filmes) {
             if(filmeEntity.getGenero().equals(genero)) {
                 filmesByGenero.add(filmeEntity);

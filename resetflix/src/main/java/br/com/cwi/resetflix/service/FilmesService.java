@@ -4,6 +4,7 @@ import br.com.cwi.resetflix.domain.Genero;
 import br.com.cwi.resetflix.entity.AtorEntity;
 import br.com.cwi.resetflix.entity.DiretorEntity;
 import br.com.cwi.resetflix.entity.FilmeEntity;
+import br.com.cwi.resetflix.exception.NotFoundException;
 import br.com.cwi.resetflix.mapper.ConsultarDetalhesFilmeResponseMapper;
 import br.com.cwi.resetflix.mapper.FilmeEntityMapper;
 import br.com.cwi.resetflix.mapper.FilmeResponseMapper;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class FilmesService {
@@ -37,9 +39,18 @@ public class FilmesService {
     static FilmeResponseMapper MAPPER_RESPONSE = new FilmeResponseMapper();
 
     public ConsultarDetalhesFilmeResponse consultarDetalhesFilmePorID(Long id) {
-        //FIXME Verificar o retorno
+        //TODO Verificar qual a melhor forma de implementação destas exceptions
+
         FilmeEntity filmeSalvo = filmeRepository.acharFilmePorID(id);
+        if(Objects.isNull(filmeSalvo)){
+            throw new NotFoundException("Filme não encontrado!");
+        }
+
         DiretorEntity diretor = diretorRepository.getDiretorById(filmeSalvo.getIdDiretor());
+        if(Objects.isNull(diretor)){
+            throw new NotFoundException("Diretor não encontrado!");
+        }
+
         List<AtorEntity> atoresFilme = atoresRepository.acharAtoresByIdFilmes(id);
 
         return MAPPER_DETALHES_FILME.mapear(filmeSalvo, diretor, atoresFilme);
