@@ -40,4 +40,13 @@ public class SeriesRepository {
     public List<SerieEntity> getSeries() {
         return series;
     }
+
+    public SerieEntity getSerieById(Long id) {
+        for (SerieEntity serieEntity : series) {
+            if (serieEntity.getId().equals(id)) {
+                return serieEntity;
+            }
+        }
+        return null;
+    }
 }

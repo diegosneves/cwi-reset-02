@@ -25,7 +25,7 @@ public class SeriesController implements SeriesContract {
     @Override
     @GetMapping("/{id}")
     public ConsultarDetalhesSerieResponse getSerieById(@PathVariable("id") Long id) {
-        return null;
+        return seriesService.getSerieById(id);
     }
 
     @Override
