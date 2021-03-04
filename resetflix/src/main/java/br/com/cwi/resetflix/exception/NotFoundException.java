@@ -9,5 +9,5 @@ public class NotFoundException extends RuntimeException {
     public NotFoundException(final String statusText) {
         super(statusText);
     }
-    
+
 }
