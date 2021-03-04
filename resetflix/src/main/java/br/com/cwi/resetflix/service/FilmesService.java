@@ -38,6 +38,12 @@ public class FilmesService {
     static FilmeEntityMapper MAPPER_ENTITY = new FilmeEntityMapper();
     static FilmeResponseMapper MAPPER_RESPONSE = new FilmeResponseMapper();
 
+    /**
+     * Método que retorna um filme em sua forma detalhada, com todas as informações pertinentes à ele.
+     *
+     * @param id Parametro usando para localizar o filme.
+     * @return Retorna um Objeto com todos o detalhes/informações do filme
+     */
     public ConsultarDetalhesFilmeResponse consultarDetalhesFilmePorID(Long id) {
         //TODO Verificar qual a melhor forma de implementação destas exceptions
 
@@ -56,6 +62,12 @@ public class FilmesService {
         return MAPPER_DETALHES_FILME.mapear(filmeSalvo, diretor, atoresFilme);
     }
 
+    /**
+     * Método recebe uma requisição(POST) do Controller para adicionar um filme ao repositório.
+     *
+     * @param request Objeto que será "convertido" em um FilmeEntity, ou seja, em um outro objeto.
+     * @return Retorna a ID(Long) criada ao adicionar ao repositório.
+     */
     public Long criarFilme(CriarFilmeRequest request) {
 
         FilmeEntity filmeSalvar = MAPPER_ENTITY.mapear(request);
@@ -63,8 +75,17 @@ public class FilmesService {
         return filmeRepository.criarFilme(filmeSalvar);
     }
 
+    /**
+     * Método que retorna uma lista de filmes de acordo com o Genero repassado como parametro.
+     *
+     * @param genero Caso seja nulo(null) retorna a lista toda de filmes.
+     * @return Retorna a lista de acordo com o valor recebido por parametro.
+     */
     public List<FilmeResponse> getFilmes(Genero genero) {
-        //TODO testar
+
+        if(genero == null) {
+            return MAPPER_RESPONSE.mapear(filmeRepository.getFilmes());
+        }
         return MAPPER_RESPONSE.mapear(filmeRepository.getFilmes(genero));
     }
 }
