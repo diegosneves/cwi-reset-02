@@ -38,6 +38,13 @@ public class SeriesService {
         return seriesRepository.criarSerie(MAPPER_ENTITY.mapear(request));
     }
 
+    /**
+     * Método que retorna dados de series por genero.
+     *
+     * @param genero Recebe o genero desejado da serie.
+     * @return Retorna as series de acordo com o genero passado como parametro, caso o valor seja nulo(null)
+     *  retornara todas a series cadastradas.
+     */
     public List<SerieResponse> getSeries(Genero genero) {
         if (genero == null){
             return MAPPER_RESPONSE.mapear(seriesRepository.getSeries());
@@ -45,6 +52,12 @@ public class SeriesService {
         return MAPPER_RESPONSE.mapear(seriesRepository.getSeriesByGenero(genero));
     }
 
+    /**
+     * Método que retorna os detalhes de uma serie.
+     *
+     * @param id Parametro para busca da serie desejada.
+     * @return Retorna os detalhes da serie.
+     */
     public ConsultarDetalhesSerieResponse getSerieById(Long id) {
 
         SerieEntity serieEntity = seriesRepository.getSerieById(id);
@@ -58,6 +71,13 @@ public class SeriesService {
         return MAPPER_DETALHES_RESPONSE.mapear(serieEntity, atorEntities);
     }
 
+    /**
+     * Método que registra a temporada e o ultimo episodio assistido.
+     *
+     * @param id ID da serie que deseja registrar.
+     * @param temporada Temporada de deseja registrar.
+     * @param episodio Episodio que deseja registrar.
+     */
     public void assistirSerie(Long id, Integer temporada, Integer episodio) {
         registraVisualizacaoRepository.assitirSerie(id, temporada, episodio, seriesRepository.getSeries());
     }

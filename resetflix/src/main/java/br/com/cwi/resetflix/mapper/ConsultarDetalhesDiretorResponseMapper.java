@@ -9,6 +9,7 @@ import java.util.List;
 
 public class ConsultarDetalhesDiretorResponseMapper {
 
+    //TODO Inserir comentarios
     public ConsultarDetalhesDiretorResponse mapear(DiretorEntity diretorSalvo, List<FilmeEntity> filmesDiretor) {
 
         List<FilmeResponse> filmeResponse = new FilmeResponseMapper().mapear(filmesDiretor);

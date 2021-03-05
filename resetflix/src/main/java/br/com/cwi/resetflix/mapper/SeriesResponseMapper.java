@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SeriesResponseMapper {
-
+    //TODO Inserir comentarios
     public List<SerieResponse> mapear(List<SerieEntity> seriesByGenero) {
 
         List<SerieResponse> serieResponses = new ArrayList<>();

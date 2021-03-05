@@ -8,7 +8,7 @@ import br.com.cwi.resetflix.response.ConsultarDetalhesSerieResponse;
 import java.util.List;
 
 public class ConsultarDetalhesSeriesReponseMapper {
-
+    //TODO Inserir comentarios
     public ConsultarDetalhesSerieResponse mapear(SerieEntity serieEntity, List<AtorEntity> atorEntities) {
 
         List<AtoresResponse> atoresResponses = new AtoresResponseMapper().mapear(atorEntities);

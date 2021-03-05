@@ -14,12 +14,10 @@ import br.com.cwi.resetflix.repository.FilmeRepository;
 import br.com.cwi.resetflix.repository.RegistraVisualizacaoRepository;
 import br.com.cwi.resetflix.request.CriarFilmeRequest;
 import br.com.cwi.resetflix.response.ConsultarDetalhesFilmeResponse;
-import br.com.cwi.resetflix.response.DiretoresResponse;
 import br.com.cwi.resetflix.response.FilmeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -49,7 +47,6 @@ public class FilmesService {
      * @return Retorna um Objeto com todos o detalhes/informações do filme
      */
     public ConsultarDetalhesFilmeResponse consultarDetalhesFilmePorID(Long id) {
-        //TODO Verificar qual a melhor forma de implementação destas exceptions
 
         FilmeEntity filmeSalvo = filmeRepository.acharFilmePorID(id);
         if(Objects.isNull(filmeSalvo)){

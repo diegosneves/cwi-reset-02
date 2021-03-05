@@ -14,12 +14,9 @@ import br.com.cwi.resetflix.entity.FilmeEntity;
 
 @Repository
 public class FilmeRepository {
-
+    
     static List<FilmeEntity> filmes = new ArrayList<>();
     static Long contadorIDs = 1l;
-
-//    static ConsultarDetalhesAtorResponseMapper MAPPER_DETALHES_ATOR = new ConsultarDetalhesAtorResponseMapper();
-
 
 
     public List<FilmeEntity> getFilmes(){
@@ -38,7 +35,7 @@ public class FilmeRepository {
     }
 
     public List<FilmeEntity> acharFilmesByAtor(final Long id) {
-        //TODO Filtrar na repository por id de ator
+
         List<FilmeEntity> filmesByAtor = new ArrayList<>();
 
         for(FilmeEntity filmeEntity : filmes) {

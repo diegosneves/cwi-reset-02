@@ -28,12 +28,23 @@ public class DiretoresService {
     static DiretorEntityMapper MAPPER_ENTITY = new DiretorEntityMapper();
     static ConsultarDetalhesDiretorResponseMapper MAPPER_DETALHES_ENTITY = new ConsultarDetalhesDiretorResponseMapper();
 
+    /**
+     * Método que retorna uma lista de Diretores contidas no banco de dados.
+     *
+     * @return Retorna informações basicas sobre todos os diretores do banco de dados.
+     */
     public List<DiretoresResponse> getDiretores() {
 
         List<DiretorEntity> diretores = diretorRepository.getDiretores();
         return MAPPER_RESPONSE.mapear(diretores);
     }
 
+    /**
+     * Método que ao receber um ID, busca no banco de dados as informações detalhadas de um Diretor.
+     *
+     * @param id Parametro de busca utilizado pelo método.
+     * @return Retorna um objeto contendo todas as informações detalhadas sobre o diretor.
+     */
     public ConsultarDetalhesDiretorResponse consultarDetalhesDiretor(Long id) {
 
         DiretorEntity diretorSalvo = diretorRepository.getDiretorById(id);
@@ -42,6 +53,12 @@ public class DiretoresService {
 
     }
 
+    /**
+     * Método que recebe a requisição do usuario para criar um objeto do tipo DiretorEntity.
+     *
+     * @param request Objeto com o dados enviado pelo usuario, para a criação de um DiretorEntity.
+     * @return Retorna a ID do objeto criado.
+     */
     public Long criarDiretor(CriarDiretorRequest request) {
 
         DiretorEntity novoDiretor = MAPPER_ENTITY.mapear(request);

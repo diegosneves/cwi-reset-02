@@ -10,9 +10,9 @@ import br.com.cwi.resetflix.response.DiretoresResponse;
 import java.util.List;
 
 public class ConsultarDetalhesFilmeResponseMapper {
-
+    //TODO Inserir comentarios
     public ConsultarDetalhesFilmeResponse mapear(FilmeEntity filmeSalvo, DiretorEntity diretor, List<AtorEntity> atoresFilme) {
-        //TODO Verificar os erros aqui
+
         List<AtoresResponse> atoresResponses = new AtoresResponseMapper().mapear(atoresFilme);
 
         return new ConsultarDetalhesFilmeResponse(filmeSalvo.getId(), filmeSalvo.getNome(), filmeSalvo.getGenero(),
