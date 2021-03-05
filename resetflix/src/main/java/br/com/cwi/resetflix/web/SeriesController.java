@@ -42,7 +42,7 @@ public class SeriesController implements SeriesContract {
 
     @Override
     @PostMapping("/{id}/{temporada}/{episodio}/assistir")
-    public void assistirSerie(@PathVariable("id/temporada/episodio/") Long id, Integer temporada, Integer episodio) {
-
+    public void assistirSerie(@PathVariable Long id, @PathVariable Integer temporada, @PathVariable Integer episodio) {
+        seriesService.assistirSerie(id, temporada, episodio);
     }
 }

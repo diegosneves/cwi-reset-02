@@ -53,6 +53,6 @@ public class FilmesController implements FilmesContract {
     @Override
     @PostMapping("/{id}/assistir")
     public void assistirFilme(@PathVariable("id") final Long id) {
-        //TODO realizar chamada
+        filmesService.assistirFilme(id);
     }
 }

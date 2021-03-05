@@ -11,6 +11,7 @@ import br.com.cwi.resetflix.mapper.FilmeResponseMapper;
 import br.com.cwi.resetflix.repository.AtoresRepository;
 import br.com.cwi.resetflix.repository.DiretorRepository;
 import br.com.cwi.resetflix.repository.FilmeRepository;
+import br.com.cwi.resetflix.repository.RegistraVisualizacaoRepository;
 import br.com.cwi.resetflix.request.CriarFilmeRequest;
 import br.com.cwi.resetflix.response.ConsultarDetalhesFilmeResponse;
 import br.com.cwi.resetflix.response.DiretoresResponse;
@@ -33,6 +34,9 @@ public class FilmesService {
 
     @Autowired
     private DiretorRepository diretorRepository;
+
+    @Autowired
+    private RegistraVisualizacaoRepository registraVisualizacaoRepository;
 
     static ConsultarDetalhesFilmeResponseMapper MAPPER_DETALHES_FILME = new ConsultarDetalhesFilmeResponseMapper();
     static FilmeEntityMapper MAPPER_ENTITY = new FilmeEntityMapper();
@@ -87,5 +91,21 @@ public class FilmesService {
             return MAPPER_RESPONSE.mapear(filmeRepository.getFilmes());
         }
         return MAPPER_RESPONSE.mapear(filmeRepository.getFilmes(genero));
+    }
+
+    /**
+     * Método que registra a visualização de um filme informado pela ID.
+     *
+     * @param id ID do filme informado para registro.
+     */
+    public void assistirFilme(Long id) {
+
+        FilmeEntity filmeSalvo = filmeRepository.acharFilmePorID(id);
+
+        if(Objects.isNull(filmeSalvo)) {
+            throw new NotFoundException("Filme não encontrado!");
+        }
+
+        registraVisualizacaoRepository.assistirFilme(id, filmeSalvo.getGenero());
     }
 }

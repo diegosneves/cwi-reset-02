@@ -8,6 +8,7 @@ import br.com.cwi.resetflix.mapper.SerieEntityMapper;
 import br.com.cwi.resetflix.mapper.SeriesResponseMapper;
 import br.com.cwi.resetflix.repository.AtoresRepository;
 import br.com.cwi.resetflix.repository.SeriesRepository;
+import br.com.cwi.resetflix.repository.RegistraVisualizacaoRepository;
 import br.com.cwi.resetflix.request.CriarSerieRequest;
 import br.com.cwi.resetflix.response.ConsultarDetalhesSerieResponse;
 import br.com.cwi.resetflix.response.SerieResponse;
@@ -25,6 +26,9 @@ public class SeriesService {
 
     @Autowired
     private AtoresRepository atoresRepository;
+
+    @Autowired
+    private RegistraVisualizacaoRepository registraVisualizacaoRepository;
 
     static SerieEntityMapper MAPPER_ENTITY = new SerieEntityMapper();
     static SeriesResponseMapper MAPPER_RESPONSE = new SeriesResponseMapper();
@@ -52,5 +56,9 @@ public class SeriesService {
         }
 
         return MAPPER_DETALHES_RESPONSE.mapear(serieEntity, atorEntities);
+    }
+
+    public void assistirSerie(Long id, Integer temporada, Integer episodio) {
+        registraVisualizacaoRepository.assitirSerie(id, temporada, episodio, seriesRepository.getSeries());
     }
 }
