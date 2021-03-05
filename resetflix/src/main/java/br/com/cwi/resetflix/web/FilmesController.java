@@ -46,8 +46,7 @@ public class FilmesController implements FilmesContract {
     @Override
     @GetMapping("/recomendacoes")
     public List<FilmeResponse> getRecomendacoesFilmes() {
-        //TODO realizar chamada
-        return Collections.emptyList();
+        return filmesService.getRecomendacoes();
     }
 
     @Override

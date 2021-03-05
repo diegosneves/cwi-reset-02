@@ -102,6 +102,22 @@ public class RegistraVisualizacaoRepository {
 
     }
 
+    /**
+     * Este método percorre o ArrayList filmes e coleta as IDs existentes para adicionar a um ArrayList e facilitar
+     *  o retorno de um MAPPER_RESPONSE de filmes.
+     *
+     * @return Retorna um ArrayList do tipo Long
+     */
+    public List<Long> getIdsFilmesVisualizados() {
+        List<Long> idsFilmesVisualizados = new ArrayList<>();
+
+        for (FilmeVisualizadoEntity filmeVisualizadoEntity : filmes) {
+            idsFilmesVisualizados.add(filmeVisualizadoEntity.getId());
+        }
+
+        return idsFilmesVisualizados;
+    }
+
 //    private void registrarOndeParou(Integer temporada, Integer episodio, SerieVisualizadaEntity serieVisualizadaEntity) {
 //        serieVisualizadaEntity.setTemporadaAtual(temporada);
 //        serieVisualizadaEntity.setEpisodioAtual(episodio);

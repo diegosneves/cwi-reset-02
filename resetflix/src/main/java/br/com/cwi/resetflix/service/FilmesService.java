@@ -5,6 +5,7 @@ import br.com.cwi.resetflix.entity.AtorEntity;
 import br.com.cwi.resetflix.entity.DiretorEntity;
 import br.com.cwi.resetflix.entity.FilmeEntity;
 import br.com.cwi.resetflix.exception.NotFoundException;
+import br.com.cwi.resetflix.exception.UsuarioDesocupadoException;
 import br.com.cwi.resetflix.mapper.ConsultarDetalhesFilmeResponseMapper;
 import br.com.cwi.resetflix.mapper.FilmeEntityMapper;
 import br.com.cwi.resetflix.mapper.FilmeResponseMapper;
@@ -18,8 +19,7 @@ import br.com.cwi.resetflix.response.FilmeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class FilmesService {
@@ -104,5 +104,85 @@ public class FilmesService {
         }
 
         registraVisualizacaoRepository.assistirFilme(id, filmeSalvo.getGenero());
+    }
+
+    /**
+     *
+     * @return
+     */
+    public List<FilmeResponse> getRecomendacoes() {
+        List<FilmeEntity> listaFilmesVisualizados = new ArrayList<>();
+        List<FilmeResponse> filmesRecomentadados = new ArrayList<>();
+        List<Long> idsFilmesAssistidos = registraVisualizacaoRepository.getIdsFilmesVisualizados();
+        Map<Genero, Integer> mapFilmesByGenero = new HashMap<>();
+
+        /*
+        Percorre um array que contem uma lista de IDs de filmes assistidos para adicionar os mesmos a um ArrayList<FilmeEntity>.
+         */
+        for (Long ids : idsFilmesAssistidos) {
+            listaFilmesVisualizados.add(filmeRepository.acharFilmePorID(ids));
+        }
+
+        /*
+        Percorre o array de FilmeEntity mapeando os generos contidos no array e adicionando a um hashmap, incrementando
+        mais 1 ao contador.
+         */
+        for (FilmeEntity filmeEntity : listaFilmesVisualizados) {
+            if (mapFilmesByGenero.containsKey(filmeEntity.getGenero())){
+                Integer contador = mapFilmesByGenero.get(filmeEntity.getGenero());
+                mapFilmesByGenero.put(filmeEntity.getGenero(), ++contador);
+            } else {
+                mapFilmesByGenero.put(filmeEntity.getGenero(), 1);
+            }
+        }
+
+        /*
+        Percorre um array de FilmeEntity procurando por um valor maior que da variável "maiorValor", ao encontrar atribui o genero
+            à variável genero e o valor contido no Map referente ao genero é atribuido à variável valor.
+         */
+        Genero genero = null;
+        Integer maiorValor = 0;
+        for (FilmeEntity filmeEntity : listaFilmesVisualizados) {
+            if (mapFilmesByGenero.get(filmeEntity.getGenero()) > maiorValor){
+                genero = filmeEntity.getGenero();
+                maiorValor = mapFilmesByGenero.get(genero);
+            }
+        }
+
+//        filmesRecomentadados = MAPPER_RESPONSE.mapear(filmeRepository.getFilmes(genero));
+        /*
+        Verifica se a Lista está vazia e lança uma exception
+         */
+        if (retornaFilmesNaoAssistidos(filmeRepository.getFilmes(genero), idsFilmesAssistidos).isEmpty()) {
+            throw new UsuarioDesocupadoException("Você já assistitu todos os filmes deste genero!!!");
+        }
+        filmesRecomentadados = MAPPER_RESPONSE.mapear(retornaFilmesNaoAssistidos(filmeRepository.getFilmes(genero), idsFilmesAssistidos));
+
+        return filmesRecomentadados;
+    }
+
+    /**
+     * Este método recebe uma lista de filmes separadas por generos e uma outra lista de IDs de filmes já visualizados. A lista de ID é usada para encontrar e remover
+     *  os filmes já visualizados, devolvendo apenas uma lista de filmes recomendados que não foram assistidos.
+     *
+     * @param filmes Lista que contem filmes do genero mais assistido pelo o usuario.
+     * @param idsFilmesAssistidos Lista contendo os IDs dos filmes já visualizados pelo o usuario.
+     * @return Lista contendo todos os filmes do genero preferido não assistidos.
+     */
+    private List<FilmeEntity> retornaFilmesNaoAssistidos(List<FilmeEntity> filmes, List<Long> idsFilmesAssistidos) {
+
+        /*
+        Percorre as listas validando IDs dos Filmes e removendo-os quando encontrado.
+         */
+        for (FilmeEntity filmeEntity : filmes) {
+            for (Long id : idsFilmesAssistidos) {
+                if (filmeEntity.getId().equals(id)){
+                    filmes.remove(filmeEntity);
+                    break;
+                }
+            }
+        }
+
+        return filmes;
     }
 }
