@@ -49,12 +49,12 @@ public class FilmesService {
     public ConsultarDetalhesFilmeResponse consultarDetalhesFilmePorID(Long id) {
 
         FilmeEntity filmeSalvo = filmeRepository.acharFilmePorID(id);
-        if(Objects.isNull(filmeSalvo)){
+        if (Objects.isNull(filmeSalvo)) {
             throw new NotFoundException("Filme não encontrado!");
         }
 
         DiretorEntity diretor = diretorRepository.getDiretorById(filmeSalvo.getIdDiretor());
-        if(Objects.isNull(diretor)){
+        if (Objects.isNull(diretor)) {
             throw new NotFoundException("Diretor não encontrado!");
         }
 
@@ -84,7 +84,7 @@ public class FilmesService {
      */
     public List<FilmeResponse> getFilmes(Genero genero) {
 
-        if(genero == null) {
+        if (genero == null) {
             return MAPPER_RESPONSE.mapear(filmeRepository.getFilmes());
         }
         return MAPPER_RESPONSE.mapear(filmeRepository.getFilmes(genero));
@@ -99,7 +99,7 @@ public class FilmesService {
 
         FilmeEntity filmeSalvo = filmeRepository.acharFilmePorID(id);
 
-        if(Objects.isNull(filmeSalvo)) {
+        if (Objects.isNull(filmeSalvo)) {
             throw new NotFoundException("Filme não encontrado!");
         }
 
@@ -107,12 +107,13 @@ public class FilmesService {
     }
 
     /**
+     * Método que realiza validações e retorna uma lista de filmes definida pelo genero do filme mais assistido do usuario.
      *
-     * @return
+     * @return Retorna uma lista de filmes recomendados ainda não assistidos pelo usuário.
      */
     public List<FilmeResponse> getRecomendacoes() {
+
         List<FilmeEntity> listaFilmesVisualizados = new ArrayList<>();
-        List<FilmeResponse> filmesRecomentadados = new ArrayList<>();
         List<Long> idsFilmesAssistidos = registraVisualizacaoRepository.getIdsFilmesVisualizados();
         Map<Genero, Integer> mapFilmesByGenero = new HashMap<>();
 
@@ -128,7 +129,7 @@ public class FilmesService {
         mais 1 ao contador.
          */
         for (FilmeEntity filmeEntity : listaFilmesVisualizados) {
-            if (mapFilmesByGenero.containsKey(filmeEntity.getGenero())){
+            if (mapFilmesByGenero.containsKey(filmeEntity.getGenero())) {
                 Integer contador = mapFilmesByGenero.get(filmeEntity.getGenero());
                 mapFilmesByGenero.put(filmeEntity.getGenero(), ++contador);
             } else {
@@ -143,46 +144,45 @@ public class FilmesService {
         Genero genero = null;
         Integer maiorValor = 0;
         for (FilmeEntity filmeEntity : listaFilmesVisualizados) {
-            if (mapFilmesByGenero.get(filmeEntity.getGenero()) > maiorValor){
+            if (mapFilmesByGenero.get(filmeEntity.getGenero()) > maiorValor) {
                 genero = filmeEntity.getGenero();
                 maiorValor = mapFilmesByGenero.get(genero);
             }
         }
 
-//        filmesRecomentadados = MAPPER_RESPONSE.mapear(filmeRepository.getFilmes(genero));
         /*
         Verifica se a Lista está vazia e lança uma exception
          */
         if (retornaFilmesNaoAssistidos(filmeRepository.getFilmes(genero), idsFilmesAssistidos).isEmpty()) {
             throw new UsuarioDesocupadoException("Você já assistitu todos os filmes deste genero!!!");
         }
-        filmesRecomentadados = MAPPER_RESPONSE.mapear(retornaFilmesNaoAssistidos(filmeRepository.getFilmes(genero), idsFilmesAssistidos));
 
-        return filmesRecomentadados;
+        return MAPPER_RESPONSE.mapear(retornaFilmesNaoAssistidos(filmeRepository.getFilmes(genero), idsFilmesAssistidos));
     }
 
     /**
      * Este método recebe uma lista de filmes separadas por generos e uma outra lista de IDs de filmes já visualizados. A lista de ID é usada para encontrar e remover
-     *  os filmes já visualizados, devolvendo apenas uma lista de filmes recomendados que não foram assistidos.
+     * os filmes já visualizados, devolvendo apenas uma lista de filmes recomendados que não foram assistidos.
      *
-     * @param filmes Lista que contem filmes do genero mais assistido pelo o usuario.
+     * @param filmes              Lista que contem filmes do genero mais assistido pelo o usuario.
      * @param idsFilmesAssistidos Lista contendo os IDs dos filmes já visualizados pelo o usuario.
      * @return Lista contendo todos os filmes do genero preferido não assistidos.
      */
     private List<FilmeEntity> retornaFilmesNaoAssistidos(List<FilmeEntity> filmes, List<Long> idsFilmesAssistidos) {
 
+        List<FilmeEntity> novaListaFilmes = new ArrayList<>();
         /*
         Percorre as listas validando IDs dos Filmes e removendo-os quando encontrado.
          */
-        for (FilmeEntity filmeEntity : filmes) {
+        for (FilmeEntity filmeEntity : filmes){
             for (Long id : idsFilmesAssistidos) {
-                if (filmeEntity.getId().equals(id)){
-                    filmes.remove(filmeEntity);
+                if (!(filmeEntity.getId().equals(id))) {
+                    novaListaFilmes.add(filmeEntity);
                     break;
                 }
             }
         }
 
-        return filmes;
+        return novaListaFilmes;
     }
 }
