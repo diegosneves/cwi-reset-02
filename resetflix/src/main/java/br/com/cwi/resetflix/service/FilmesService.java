@@ -115,7 +115,7 @@ public class FilmesService {
 
         List<FilmeEntity> listaFilmesVisualizados = new ArrayList<>();
         List<Long> idsFilmesAssistidos = registraVisualizacaoRepository.getIdsFilmesVisualizados();
-        Map<Genero, Integer> mapFilmesByGenero = new HashMap<>();
+        Map<Genero, Integer> filmesByGeneroMap = new HashMap<>();
 
         /*
         Percorre um array que contem uma lista de IDs de filmes assistidos para adicionar os mesmos a um ArrayList<FilmeEntity>.
@@ -129,11 +129,11 @@ public class FilmesService {
         mais 1 ao contador.
          */
         for (FilmeEntity filmeEntity : listaFilmesVisualizados) {
-            if (mapFilmesByGenero.containsKey(filmeEntity.getGenero())) {
-                Integer contador = mapFilmesByGenero.get(filmeEntity.getGenero());
-                mapFilmesByGenero.put(filmeEntity.getGenero(), ++contador);
+            if (filmesByGeneroMap.containsKey(filmeEntity.getGenero())) {
+                Integer contador = filmesByGeneroMap.get(filmeEntity.getGenero());
+                filmesByGeneroMap.put(filmeEntity.getGenero(), ++contador);
             } else {
-                mapFilmesByGenero.put(filmeEntity.getGenero(), 1);
+                filmesByGeneroMap.put(filmeEntity.getGenero(), 1);
             }
         }
 
@@ -144,9 +144,9 @@ public class FilmesService {
         Genero genero = null;
         Integer maiorValor = 0;
         for (FilmeEntity filmeEntity : listaFilmesVisualizados) {
-            if (mapFilmesByGenero.get(filmeEntity.getGenero()) > maiorValor) {
+            if (filmesByGeneroMap.get(filmeEntity.getGenero()) > maiorValor) {
                 genero = filmeEntity.getGenero();
-                maiorValor = mapFilmesByGenero.get(genero);
+                maiorValor = filmesByGeneroMap.get(genero);
             }
         }
 

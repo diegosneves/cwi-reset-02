@@ -35,9 +35,9 @@ public class SeriesController implements SeriesContract {
     }
 
     @Override
-    @GetMapping("/Recomendacoes")
+    @GetMapping("/recomendacoes")
     public List<SerieResponse> getSeriesRecomendadas() {
-        return null;
+        return seriesService.getSeriesRecomendadas();
     }
 
     @Override

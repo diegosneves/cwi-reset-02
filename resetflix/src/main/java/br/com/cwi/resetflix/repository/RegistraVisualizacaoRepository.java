@@ -118,9 +118,17 @@ public class RegistraVisualizacaoRepository {
         return idsFilmesVisualizados;
     }
 
-//    private void registrarOndeParou(Integer temporada, Integer episodio, SerieVisualizadaEntity serieVisualizadaEntity) {
-//        serieVisualizadaEntity.setTemporadaAtual(temporada);
-//        serieVisualizadaEntity.setEpisodioAtual(episodio);
-//    }
+    /**
+     * Percorre o ArrayList<SerieVisualizadaEntity> para coleta da IDs das Series já visualizadas.
+     *
+     * @return Retorna um ArrayList<Long> com todas as IDs das Séries já visualizadas.
+     */
+    public List<Long> getIdsSeriesVisualizadas() {
+        List<Long> idSeriesVisualizadas = new ArrayList<>();
 
+        for (SerieVisualizadaEntity serieVisualizadaEntity : series) {
+            idSeriesVisualizadas.add(serieVisualizadaEntity.getId());
+        }
+        return idSeriesVisualizadas;
+    }
 }
